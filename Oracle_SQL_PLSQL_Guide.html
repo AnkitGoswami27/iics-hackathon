@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Oracle SQL & PL/SQL Complete Guide</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a1a; background: #fff; padding: 30px; }
+  h1 { font-size: 26px; color: #c0392b; border-bottom: 3px solid #c0392b; padding-bottom: 10px; margin: 30px 0 20px; text-align: center; }
+  h2 { font-size: 19px; color: #fff; background: #2c3e50; padding: 8px 14px; margin: 30px 0 12px; border-radius: 4px; page-break-after: avoid; }
+  h3 { font-size: 15px; color: #c0392b; margin: 18px 0 8px; border-left: 4px solid #c0392b; padding-left: 10px; page-break-after: avoid; }
+  h4 { font-size: 13px; color: #2980b9; margin: 14px 0 6px; }
+  p { margin: 8px 0; line-height: 1.6; }
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 14px 16px; border-radius: 6px; font-size: 11.5px; font-family: 'Consolas', 'Courier New', monospace; white-space: pre-wrap; word-wrap: break-word; margin: 10px 0; border-left: 4px solid #89b4fa; page-break-inside: avoid; }
+  code { background: #eef2ff; color: #c0392b; padding: 1px 5px; border-radius: 3px; font-family: 'Consolas', monospace; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; page-break-inside: avoid; }
+  th { background: #2c3e50; color: #fff; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #ddd; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+  .part-header { background: linear-gradient(135deg, #c0392b, #922b21); color: white; text-align: center; padding: 15px; font-size: 22px; font-weight: bold; margin: 40px 0 10px; border-radius: 6px; page-break-before: always; }
+  .cross-q { background: #fff8e1; border-left: 4px solid #f39c12; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .cross-q strong { color: #e67e22; }
+  .note { background: #e8f4fd; border-left: 4px solid #2980b9; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  ul { margin: 8px 0 8px 24px; }
+  li { margin: 4px 0; line-height: 1.5; }
+  .cover { text-align: center; padding: 80px 40px; border: 3px solid #c0392b; margin-bottom: 40px; border-radius: 10px; }
+  .cover h1 { font-size: 36px; border: none; }
+  .cover .subtitle { font-size: 16px; color: #666; margin-top: 10px; }
+  .cover .meta { margin-top: 30px; font-size: 14px; color: #444; }
+  .toc { background: #f7f9fc; border: 1px solid #ddd; padding: 20px; border-radius: 6px; margin: 20px 0; }
+  .toc h2 { background: #2c3e50; color: white; padding: 8px 14px; margin: 0 0 12px; }
+  .toc ol { margin-left: 20px; }
+  .toc li { margin: 4px 0; color: #2980b9; }
+  @media print {
+    body { padding: 15px; font-size: 12px; }
+    h2 { page-break-before: auto; }
+    .part-header { page-break-before: always; }
+    pre { font-size: 10.5px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <h1>Oracle SQL &amp; PL/SQL</h1>
+  <h1>Complete Interview Guide</h1>
+  <div class="subtitle">From Fundamentals to Advanced PL/SQL — With Cross Questions</div>
+  <div class="meta">
+    <p><strong>Prepared for:</strong> HCL Campus Hackathon &amp; Oracle Interviews</p>
+    <p><strong>Topics Covered:</strong> ERD · Normalization · SQL · PL/SQL · Triggers · Packages · LOBs</p>
+    <p><strong>Date:</strong> March 2026</p>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li>Entity Relationship Diagram (ERD)</li>
+    <li>Transaction Concepts &amp; ACID</li>
+    <li>Normalization (1NF, 2NF, 3NF, BCNF)</li>
+    <li>Data Models: Relational, OO, ORDBMS</li>
+    <li>Introduction to Oracle Database</li>
+    <li>Basic SQL Statements</li>
+    <li>Restricting &amp; Sorting Data (WHERE, ORDER BY)</li>
+    <li>Single-Row Functions (String, Number, Date, Conversion)</li>
+    <li>Joins (INNER, OUTER, SELF, CROSS)</li>
+    <li>SET Operators (UNION, INTERSECT, MINUS)</li>
+    <li>Aggregating Data (GROUP BY, HAVING, ROLLUP)</li>
+    <li>Subqueries &amp; Correlated Subqueries</li>
+    <li>DML — Manipulating Data</li>
+    <li>Creating &amp; Partitioning Tables</li>
+    <li>Constraints</li>
+    <li>Views</li>
+    <li>Sequences</li>
+    <li>Synonyms</li>
+    <li>Indexes</li>
+    <li>Controlling User Access (DCL)</li>
+    <li>Introduction to PL/SQL</li>
+    <li>Declaring Variables (%TYPE, %ROWTYPE)</li>
+    <li>Control Statements (IF, LOOP, FOR, WHILE)</li>
+    <li>Composite Datatypes (Records, Collections)</li>
+    <li>Implicit &amp; Explicit Cursors</li>
+    <li>Advanced Cursor Concepts</li>
+    <li>Exception Handling</li>
+    <li>Stored Procedures</li>
+    <li>Functions</li>
+    <li>Packages</li>
+    <li>Oracle Supplied Packages</li>
+    <li>Large Objects (CLOB, BLOB)</li>
+    <li>Database Triggers (DML)</li>
+    <li>DDL Triggers</li>
+    <li>System Event Triggers</li>
+    <li>Managing Dependencies</li>
+  </ol>
+</div>
+
+<!-- ===================== PART 1 ===================== -->
+<div class="part-header">PART 1 — DATABASE FUNDAMENTALS</div>
+
+<!-- 1. ERD -->
+<h2>1. Entity Relationship Diagram (ERD)</h2>
+<h3>What is it?</h3>
+<p>A visual blueprint showing <strong>Entities</strong> (tables), <strong>Attributes</strong> (columns), and <strong>Relationships</strong> (how tables connect). Created before writing any SQL — at the design stage.</p>
+
+<h3>ERD Components</h3>
+<table>
+  <tr><th>Symbol</th><th>Meaning</th></tr>
+  <tr><td>Rectangle</td><td>Entity (Table)</td></tr>
+  <tr><td>Ellipse</td><td>Attribute (Column)</td></tr>
+  <tr><td>Diamond</td><td>Relationship between entities</td></tr>
+  <tr><td>Double Rectangle</td><td>Weak Entity (depends on another entity)</td></tr>
+  <tr><td>Underlined attribute</td><td>Primary Key</td></tr>
+</table>
+
+<h3>Relationship Types</h3>
+<table>
+  <tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>One-to-One</td><td>1 row ↔ 1 row</td><td>Employee ↔ Passport</td></tr>
+  <tr><td>One-to-Many</td><td>1 row ↔ many rows</td><td>Customer → Orders</td></tr>
+  <tr><td>Many-to-Many</td><td>Many ↔ Many</td><td>Students ↔ Courses (needs bridge table)</td></tr>
+</table>
+
+<div class="cross-q">
+  <strong>Q: What is a weak entity?</strong><br>
+  A: An entity that cannot exist without another. e.g., ORDER_ITEM cannot exist without ORDER. Has a partial key, not a full primary key.<br><br>
+  <strong>Q: Difference between ERD and schema?</strong><br>
+  A: ERD is logical/conceptual design. Schema is the actual physical implementation in the database.
+</div>
+
+<!-- 2. Transactions -->
+<h2>2. Transaction Concepts</h2>
+<h3>What is a Transaction?</h3>
+<p>A <strong>logical unit of work</strong> — all operations succeed together or none of them do.</p>
+
+<h3>ACID Properties</h3>
+<table>
+  <tr><th>Property</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td><strong>Atomicity</strong></td><td>All or nothing</td><td>Bank transfer: debit + credit both happen or neither</td></tr>
+  <tr><td><strong>Consistency</strong></td><td>DB stays valid before and after</td><td>Balance never goes negative</td></tr>
+  <tr><td><strong>Isolation</strong></td><td>Transactions don't interfere</td><td>Two users updating same row handled properly</td></tr>
+  <tr><td><strong>Durability</strong></td><td>Committed data survives crashes</td><td>After COMMIT, data is permanent even after server restart</td></tr>
+</table>
+
+<h3>Transaction Commands</h3>
+<pre>COMMIT;              -- Make changes permanent
+ROLLBACK;            -- Undo all changes since last COMMIT
+SAVEPOINT sp1;       -- Create a checkpoint
+ROLLBACK TO sp1;     -- Undo only up to the savepoint</pre>
+
+<div class="cross-q">
+  <strong>Q: What happens if you close SQL*Plus without COMMIT?</strong><br>
+  A: Oracle automatically issues a ROLLBACK — all uncommitted changes are lost.<br><br>
+  <strong>Q: What is a dirty read?</strong><br>
+  A: Reading uncommitted data from another transaction. Oracle prevents this using MVCC (Multi-Version Concurrency Control).<br><br>
+  <strong>Q: What is MVCC?</strong><br>
+  A: Multi-Version Concurrency Control — Oracle keeps a read-consistent snapshot of data for each query using UNDO segments, so readers don't block writers.
+</div>
+
+<!-- 3. Normalization -->
+<h2>3. Normalization</h2>
+<h3>What is it?</h3>
+<p>Organizing tables to <strong>reduce redundancy</strong> and <strong>improve data integrity</strong> by following a series of rules called Normal Forms.</p>
+
+<h3>1NF — First Normal Form</h3>
+<ul><li>Each column has atomic (indivisible) values</li><li>No repeating groups or arrays in a column</li></ul>
+<pre>-- BAD (not 1NF): Subjects = "Math, Science"
+Student(ID, Name, Subjects)
+
+-- GOOD (1NF): atomic values
+Student(ID, Name) + StudentSubject(StudentID, Subject)</pre>
+
+<h3>2NF — Second Normal Form</h3>
+<ul><li>Must be in 1NF</li><li>No <strong>partial dependency</strong> — every non-key column depends on the WHOLE primary key</li></ul>
+<pre>-- BAD: OrderItem(OrderID, ProductID, ProductName)
+--      ProductName depends only on ProductID, not on (OrderID + ProductID)
+-- GOOD: Separate Product(ProductID, ProductName) table</pre>
+
+<h3>3NF — Third Normal Form</h3>
+<ul><li>Must be in 2NF</li><li>No <strong>transitive dependency</strong> — non-key column should not depend on another non-key column</li></ul>
+<pre>-- BAD: Employee(EmpID, DeptID, DeptName)
+--      DeptName depends on DeptID (not directly on EmpID)
+-- GOOD: Separate Department(DeptID, DeptName) table</pre>
+
+<h3>BCNF — Boyce-Codd Normal Form</h3>
+<p>Stricter version of 3NF. Every determinant must be a candidate key.</p>
+
+<div class="cross-q">
+  <strong>Q: What is denormalization and when do you use it?</strong><br>
+  A: Intentionally adding redundancy for performance. Used in Data Warehouses where read speed is more important than write integrity.<br><br>
+  <strong>Q: Can a table be in 3NF but not BCNF?</strong><br>
+  A: Yes — when there are multiple overlapping candidate keys.
+</div>
+
+<!-- 4. Data Models -->
+<h2>4. Data Models</h2>
+<h3>Relational Model</h3>
+<p>Data in tables (relations). Relationships via foreign keys. Uses standard SQL. Most common — Oracle, MySQL, PostgreSQL.</p>
+
+<h3>Object-Oriented Model</h3>
+<p>Data as objects (like OOP classes). Objects have attributes + methods. Supports inheritance, encapsulation. Example: db4o, ObjectDB.</p>
+
+<h3>OODBMS vs ORDBMS</h3>
+<table>
+  <tr><th>Feature</th><th>OODBMS</th><th>ORDBMS</th></tr>
+  <tr><td>Base</td><td>Pure OOP</td><td>Relational + OOP extensions</td></tr>
+  <tr><td>SQL</td><td>No standard SQL</td><td>Standard SQL + extensions</td></tr>
+  <tr><td>Example</td><td>db4o</td><td>Oracle, PostgreSQL</td></tr>
+  <tr><td>Inheritance</td><td>Full</td><td>Partial</td></tr>
+</table>
+
+<pre>-- Oracle ORDBMS: object type inside relational table
+CREATE TYPE address_type AS OBJECT (
+  street VARCHAR2(100),
+  city   VARCHAR2(50)
+);
+CREATE TABLE employees (
+  emp_id  NUMBER,
+  address address_type   -- object inside relational table
+);</pre>
+
+<div class="cross-q">
+  <strong>Q: Why did OODBMS not replace RDBMS?</strong><br>
+  A: SQL is universally known, RDBMS is battle-tested for decades, and ACID compliance is harder to guarantee in OODBMS. RDBMS won enterprise adoption.
+</div>
+
+<!-- 5. Oracle Architecture -->
+<h2>5. Introduction to Oracle Database</h2>
+<h3>Key Architecture Components</h3>
+<table>
+  <tr><th>Component</th><th>Role</th></tr>
+  <tr><td><strong>Instance</strong></td><td>Memory (SGA) + Background processes — temporary</td></tr>
+  <tr><td><strong>Database</strong></td><td>Physical files on disk — permanent</td></tr>
+  <tr><td><strong>SGA</strong></td><td>Shared Memory: DB Buffer Cache, Shared Pool, Redo Log Buffer</td></tr>
+  <tr><td><strong>PGA</strong></td><td>Per-session private memory area</td></tr>
+  <tr><td><strong>SMON</strong></td><td>System Monitor — crash recovery, space cleanup</td></tr>
+  <tr><td><strong>PMON</strong></td><td>Process Monitor — cleanup after failed user processes</td></tr>
+  <tr><td><strong>DBWn</strong></td><td>Database Writer — writes dirty buffers to disk</td></tr>
+  <tr><td><strong>LGWR</strong></td><td>Log Writer — writes redo logs</td></tr>
+  <tr><td><strong>CKPT</strong></td><td>Checkpoint — signals DBWn to write and updates control file</td></tr>
+</table>
+
+<div class="cross-q">
+  <strong>Q: Difference between Oracle Instance and Oracle Database?</strong><br>
+  A: Instance = memory + processes (in RAM, temporary). Database = physical files on disk (permanent). The instance accesses the database.
+</div>
+
+<!-- ===================== PART 2 ===================== -->
+<div class="part-header">PART 2 — SQL</div>
+
+<!-- 6. Basic SQL -->
+<h2>6. Basic SQL Statements</h2>
+<pre>-- SELECT basic
+SELECT column1, column2 FROM table_name;
+SELECT * FROM employees;
+
+-- Arithmetic
+SELECT salary, salary * 12 AS annual_salary FROM employees;
+
+-- DISTINCT
+SELECT DISTINCT department_id FROM employees;
+
+-- Concatenation
+SELECT first_name || ' ' || last_name AS full_name FROM employees;</pre>
+
+<div class="cross-q">
+  <strong>Q: What is the difference between WHERE and HAVING?</strong><br>
+  A: WHERE filters rows BEFORE grouping. HAVING filters groups AFTER GROUP BY.<br><br>
+  <strong>Q: Can you use a column alias in WHERE clause?</strong><br>
+  A: No — aliases are resolved after WHERE. Use a subquery if needed.<br><br>
+  <strong>Q: SQL clause execution order?</strong><br>
+  A: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY
+</div>
+
+<!-- 7. WHERE & ORDER BY -->
+<h2>7. Restricting and Sorting Data</h2>
+<pre>WHERE salary > 50000
+WHERE department_id IN (10, 20, 30)
+WHERE salary BETWEEN 30000 AND 60000
+WHERE last_name LIKE 'S%'          -- starts with S
+WHERE last_name LIKE '_ing'        -- second char onwards = ing
+WHERE commission_pct IS NULL
+WHERE commission_pct IS NOT NULL
+
+-- ORDER BY
+SELECT * FROM employees ORDER BY salary DESC;
+SELECT * FROM employees ORDER BY department_id ASC, salary DESC;
+SELECT * FROM employees ORDER BY commission_pct NULLS LAST;</pre>
+
+<div class="cross-q">
+  <strong>Q: Difference between = and LIKE?</strong><br>
+  A: = is exact match. LIKE supports wildcards: % (any characters), _ (single character).<br><br>
+  <strong>Q: What does NULLS LAST do?</strong><br>
+  A: Pushes NULL values to the end of the sorted result. Default in DESC order NULLs come first.
+</div>
+
+<!-- 8. Single Row Functions -->
+<h2>8. Single-Row Functions</h2>
+<h3>Character Functions</h3>
+<pre>UPPER('hello')           → 'HELLO'
+LOWER('HELLO')           → 'hello'
+INITCAP('hello world')   → 'Hello World'
+LENGTH('Oracle')         → 6
+SUBSTR('Oracle', 1, 3)   → 'Ora'
+INSTR('Oracle', 'a')     → 3
+LPAD('5', 3, '0')        → '005'
+RPAD('5', 3, '0')        → '500'
+TRIM('  hello  ')        → 'hello'
+REPLACE('Hello','l','r') → 'Herro'
+CONCAT('Hello',' World') → 'Hello World'</pre>
+
+<h3>Numeric Functions</h3>
+<pre>ROUND(45.926, 2)  → 45.93   -- rounds mathematically
+TRUNC(45.926, 2)  → 45.92   -- cuts without rounding
+MOD(10, 3)        → 1
+ABS(-15)          → 15
+CEIL(1.1)         → 2       -- smallest integer >= value
+FLOOR(1.9)        → 1       -- largest integer <= value
+POWER(2, 3)       → 8
+SQRT(25)          → 5</pre>
+
+<h3>Date Functions</h3>
+<pre>SYSDATE                                    -- current date+time (server)
+CURRENT_DATE                               -- session timezone date
+ADD_MONTHS(SYSDATE, 3)                     -- 3 months later
+MONTHS_BETWEEN(DATE'2025-12-01','2025-01-01') -- 11
+NEXT_DAY(SYSDATE, 'MONDAY')               -- next Monday
+LAST_DAY(SYSDATE)                          -- last day of month
+ROUND(SYSDATE, 'MONTH')                    -- round to nearest month
+TRUNC(SYSDATE, 'YEAR')                     -- January 1 of current year</pre>
+
+<h3>Conversion Functions</h3>
+<pre>TO_CHAR(SYSDATE, 'DD-MON-YYYY')           -- '10-MAR-2026'
+TO_CHAR(1234.56, '$9,999.99')             -- '$1,234.56'
+TO_DATE('2025-01-15', 'YYYY-MM-DD')       -- Date value
+TO_NUMBER('1,234.56', '9,999.99')         -- 1234.56</pre>
+
+<h3>General / NULL Functions</h3>
+<pre>NVL(commission_pct, 0)               -- replace NULL with 0
+NVL2(commission_pct, 'Has', 'None')  -- if not null / if null
+NULLIF(100, 100)                     -- returns NULL if both equal
+COALESCE(NULL, NULL, 'found', 'x')  -- first non-null = 'found'
+
+-- CASE expression
+SELECT first_name,
+  CASE department_id
+    WHEN 10 THEN 'Admin'
+    WHEN 20 THEN 'Marketing'
+    ELSE 'Other'
+  END AS dept_name
+FROM employees;
+
+-- DECODE (Oracle specific)
+SELECT DECODE(department_id, 10,'Admin', 20,'Marketing','Other')
+FROM employees;</pre>
+
+<div class="cross-q">
+  <strong>Q: Difference between ROUND and TRUNC?</strong><br>
+  A: ROUND rounds mathematically (≥5 rounds up). TRUNC simply cuts — no rounding.<br><br>
+  <strong>Q: Difference between NVL and COALESCE?</strong><br>
+  A: NVL takes exactly 2 arguments. COALESCE takes multiple, returns first non-NULL. COALESCE is ANSI standard.<br><br>
+  <strong>Q: What is DUAL?</strong><br>
+  A: A dummy one-row, one-column Oracle table used to test expressions or call functions without a real table.
+</div>
+
+<!-- 9. Joins -->
+<h2>9. Joins — Displaying Data from Multiple Tables</h2>
+<pre>-- INNER JOIN — only matching rows
+SELECT e.first_name, d.department_name
+FROM employees e
+INNER JOIN departments d ON e.department_id = d.department_id;
+
+-- LEFT OUTER JOIN — all from left, NULLs where no match on right
+SELECT e.first_name, d.department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.department_id;
+
+-- RIGHT OUTER JOIN — all from right, NULLs where no match on left
+SELECT e.first_name, d.department_name
+FROM employees e
+RIGHT JOIN departments d ON e.department_id = d.department_id;
+
+-- FULL OUTER JOIN — all rows from both sides
+SELECT e.first_name, d.department_name
+FROM employees e
+FULL OUTER JOIN departments d ON e.department_id = d.department_id;
+
+-- CROSS JOIN — Cartesian product (every row × every row)
+SELECT e.first_name, d.department_name
+FROM employees e CROSS JOIN departments d;
+
+-- SELF JOIN — table joining itself
+SELECT e.first_name AS employee, m.first_name AS manager
+FROM employees e
+JOIN employees m ON e.manager_id = m.employee_id;
+
+-- Oracle old syntax (+) for outer join
+SELECT e.first_name, d.department_name
+FROM employees e, departments d
+WHERE e.department_id = d.department_id(+);  -- LEFT outer join</pre>
+
+<div class="cross-q">
+  <strong>Q: What is a Cartesian product?</strong><br>
+  A: When two tables are joined WITHOUT a join condition. Every row in A pairs with every row in B. 10 × 10 = 100 rows.<br><br>
+  <strong>Q: When would you use a SELF JOIN?</strong><br>
+  A: Hierarchical data — employee-manager relationship stored in the same table.<br><br>
+  <strong>Q: Difference between INNER JOIN and EQUIJOIN?</strong><br>
+  A: EQUIJOIN uses = operator (a type of inner join). INNER JOIN is the broader category (also includes non-equal conditions).
+</div>
+
+<!-- 10. SET Operators -->
+<h2>10. SET Operators</h2>
+<pre>-- UNION — combines results, removes duplicates (slower)
+SELECT employee_id FROM employees
+UNION
+SELECT employee_id FROM retired_employees;
+
+-- UNION ALL — combines results, KEEPS duplicates (faster)
+SELECT employee_id FROM employees
+UNION ALL
+SELECT employee_id FROM retired_employees;
+
+-- INTERSECT — only rows that appear in BOTH queries
+SELECT employee_id FROM employees
+INTERSECT
+SELECT employee_id FROM managers;
+
+-- MINUS — rows in first query but NOT in second
+SELECT employee_id FROM employees
+MINUS
+SELECT employee_id FROM managers;</pre>
+
+<h4>Rules for SET Operators</h4>
+<ul>
+  <li>Same number of columns in both SELECT statements</li>
+  <li>Compatible data types column by column</li>
+  <li>Column names are taken from the FIRST query</li>
+  <li>ORDER BY only at the very end, on the final result</li>
+</ul>
+
+<div class="cross-q">
+  <strong>Q: Difference between UNION and UNION ALL?</strong><br>
+  A: UNION removes duplicates (sorts internally — slower). UNION ALL keeps duplicates (faster — no sort needed).<br><br>
+  <strong>Q: When would you use MINUS?</strong><br>
+  A: Finding records in one table but not another — e.g., "customers who have NOT placed any order."
+</div>
+
+<!-- 11. Aggregating -->
+<h2>11. Aggregating Data</h2>
+<pre>SELECT COUNT(*)                FROM employees;  -- counts all rows incl. NULLs
+SELECT COUNT(commission_pct)   FROM employees;  -- ignores NULLs
+SELECT SUM(salary)             FROM employees;
+SELECT AVG(salary)             FROM employees;
+SELECT MAX(salary)             FROM employees;
+SELECT MIN(salary)             FROM employees;
+
+-- GROUP BY
+SELECT department_id, AVG(salary)
+FROM employees
+GROUP BY department_id;
+
+-- HAVING — filter on groups (like WHERE but for groups)
+SELECT department_id, AVG(salary)
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > 8000;
+
+-- ROLLUP — subtotals per group + grand total
+SELECT department_id, job_id, SUM(salary)
+FROM employees
+GROUP BY ROLLUP(department_id, job_id);
+
+-- CUBE — all possible subtotal combinations
+SELECT department_id, job_id, SUM(salary)
+FROM employees
+GROUP BY CUBE(department_id, job_id);</pre>
+
+<div class="cross-q">
+  <strong>Q: Does COUNT(*) count NULLs?</strong><br>
+  A: COUNT(*) counts ALL rows including NULLs. COUNT(column) ignores NULLs.<br><br>
+  <strong>Q: Can you use aggregate functions in WHERE?</strong><br>
+  A: No. Use HAVING. WHERE filters rows; HAVING filters groups after GROUP BY.<br><br>
+  <strong>Q: Difference between ROLLUP and CUBE?</strong><br>
+  A: ROLLUP gives hierarchical subtotals (one direction). CUBE gives ALL possible combinations of subtotals.
+</div>
+
+<!-- 12. Subqueries -->
+<h2>12. Subqueries &amp; Correlated Subqueries</h2>
+<pre>-- Single-row subquery
+SELECT first_name, salary FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+-- Multi-row subquery with IN
+SELECT first_name FROM employees
+WHERE department_id IN (
+  SELECT department_id FROM departments WHERE location_id = 1700
+);
+
+-- ANY — true if ANY value in subquery matches
+SELECT salary FROM employees
+WHERE salary > ANY (SELECT salary FROM employees WHERE department_id = 30);
+
+-- ALL — true only if ALL values in subquery match
+SELECT salary FROM employees
+WHERE salary > ALL (SELECT salary FROM employees WHERE department_id = 30);
+
+-- Inline view (subquery in FROM)
+SELECT d.department_id, d.avg_sal
+FROM (SELECT department_id, AVG(salary) avg_sal
+      FROM employees GROUP BY department_id) d
+WHERE d.avg_sal > 8000;
+
+-- CORRELATED subquery — references outer query column
+-- Find employees who earn more than their OWN department average
+SELECT e1.first_name, e1.salary, e1.department_id
+FROM employees e1
+WHERE e1.salary > (
+  SELECT AVG(e2.salary)
+  FROM employees e2
+  WHERE e2.department_id = e1.department_id  -- references outer query
+);
+
+-- EXISTS — stops at first match (faster than IN for large datasets)
+SELECT first_name FROM employees e
+WHERE EXISTS (
+  SELECT 1 FROM departments d
+  WHERE d.department_id = e.department_id AND d.location_id = 1700
+);</pre>
+
+<div class="cross-q">
+  <strong>Q: Difference between correlated and non-correlated subquery?</strong><br>
+  A: Non-correlated: runs ONCE, result reused for all outer rows. Correlated: runs ONCE PER ROW of outer query (references outer column).<br><br>
+  <strong>Q: When to use EXISTS vs IN?</strong><br>
+  A: EXISTS is faster when subquery returns many rows (stops at first match). IN compares all values — fine for small result sets.
+</div>
+
+<!-- 13. DML -->
+<h2>13. Manipulating Data — DML</h2>
+<pre>-- INSERT
+INSERT INTO employees (employee_id, first_name, salary, department_id)
+VALUES (999, 'John', 50000, 10);
+
+-- INSERT with subquery
+INSERT INTO emp_backup SELECT * FROM employees WHERE department_id = 10;
+
+-- UPDATE
+UPDATE employees SET salary = salary * 1.10 WHERE department_id = 20;
+
+-- DELETE
+DELETE FROM employees WHERE employee_id = 999;
+
+-- MERGE (Upsert — insert if not exists, update if exists)
+MERGE INTO employees tgt
+USING new_employees src ON (tgt.employee_id = src.employee_id)
+WHEN MATCHED THEN
+  UPDATE SET tgt.salary = src.salary
+WHEN NOT MATCHED THEN
+  INSERT (employee_id, first_name, salary)
+  VALUES (src.employee_id, src.first_name, src.salary);</pre>
+
+<h3>DELETE vs TRUNCATE vs DROP</h3>
+<table>
+  <tr><th></th><th>DELETE</th><th>TRUNCATE</th><th>DROP</th></tr>
+  <tr><td>Type</td><td>DML</td><td>DDL</td><td>DDL</td></tr>
+  <tr><td>Rollback?</td><td>✅ Yes</td><td>❌ No</td><td>❌ No</td></tr>
+  <tr><td>WHERE clause?</td><td>✅ Yes</td><td>❌ No</td><td>❌ No</td></tr>
+  <tr><td>Removes structure?</td><td>❌ No</td><td>❌ No</td><td>✅ Yes</td></tr>
+  <tr><td>Triggers fire?</td><td>✅ Yes</td><td>❌ No</td><td>❌ No</td></tr>
+  <tr><td>Speed</td><td>Slowest</td><td>Fast</td><td>Fastest</td></tr>
+</table>
+
+<!-- 14. Tables and Partitioning -->
+<h2>14. Creating, Managing and Partitioning Tables</h2>
+<pre>-- CREATE TABLE
+CREATE TABLE products (
+  product_id   NUMBER(6)      PRIMARY KEY,
+  product_name VARCHAR2(100)  NOT NULL,
+  price        NUMBER(10,2),
+  created_date DATE DEFAULT SYSDATE
+);
+
+-- ALTER TABLE
+ALTER TABLE products ADD (discount NUMBER(5,2));
+ALTER TABLE products MODIFY (product_name VARCHAR2(200));
+ALTER TABLE products DROP COLUMN discount;
+ALTER TABLE products RENAME TO inventory;
+DROP TABLE inventory;
+DROP TABLE inventory PURGE;  -- bypass recycle bin
+
+-- RANGE Partitioning (most common in DWH)
+CREATE TABLE sales (
+  sale_id   NUMBER,
+  sale_date DATE,
+  amount    NUMBER
+)
+PARTITION BY RANGE (sale_date) (
+  PARTITION p_2024   VALUES LESS THAN (DATE'2025-01-01'),
+  PARTITION p_2025   VALUES LESS THAN (DATE'2026-01-01'),
+  PARTITION p_future VALUES LESS THAN (MAXVALUE)
+);
+
+-- LIST Partitioning
+CREATE TABLE emp_part
+PARTITION BY LIST (department_id) (
+  PARTITION p_admin   VALUES (10, 20),
+  PARTITION p_finance VALUES (30, 40),
+  PARTITION p_other   VALUES (DEFAULT)
+);
+
+-- HASH Partitioning — Oracle distributes rows evenly
+CREATE TABLE orders_part
+PARTITION BY HASH (order_id)
+PARTITIONS 4;</pre>
+
+<div class="cross-q">
+  <strong>Q: Why use partitioning?</strong><br>
+  A: Partition pruning — queries scan ONLY relevant partitions, not the full table. Dramatically improves performance on large datasets.<br><br>
+  <strong>Q: What is partition pruning?</strong><br>
+  A: When the WHERE clause matches the partition key, Oracle automatically skips all other partitions.
+</div>
+
+<!-- 15. Constraints -->
+<h2>15. Including Constraints</h2>
+<pre>CREATE TABLE employees (
+  employee_id   NUMBER(6)    CONSTRAINT emp_pk PRIMARY KEY,
+  first_name    VARCHAR2(50) CONSTRAINT emp_fname_nn NOT NULL,
+  email         VARCHAR2(100) CONSTRAINT emp_email_uq UNIQUE,
+  salary        NUMBER(10,2) CONSTRAINT emp_sal_ck CHECK (salary > 0),
+  department_id NUMBER(4)    CONSTRAINT emp_dept_fk
+                             REFERENCES departments(department_id)
+);
+
+-- Add after table creation
+ALTER TABLE employees ADD CONSTRAINT emp_sal_ck CHECK (salary > 0);
+
+-- Disable / Enable constraint
+ALTER TABLE employees DISABLE CONSTRAINT emp_dept_fk;
+ALTER TABLE employees ENABLE  CONSTRAINT emp_dept_fk;
+
+-- FK with cascade options
+REFERENCES departments(department_id) ON DELETE CASCADE   -- delete child too
+REFERENCES departments(department_id) ON DELETE SET NULL  -- set FK to NULL</pre>
+
+<div class="cross-q">
+  <strong>Q: Difference between UNIQUE and PRIMARY KEY?</strong><br>
+  A: PRIMARY KEY = UNIQUE + NOT NULL. A table can have only ONE primary key but MULTIPLE unique constraints. UNIQUE allows NULLs.<br><br>
+  <strong>Q: What is a composite primary key?</strong><br>
+  A: A primary key made of multiple columns. The COMBINATION must be unique, not individual columns.
+</div>
+
+<!-- 16. Views -->
+<h2>16. Creating Views</h2>
+<pre>-- CREATE VIEW
+CREATE VIEW emp_dept_view AS
+SELECT e.first_name, e.salary, d.department_name
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+WHERE e.salary > 5000;
+
+-- WITH CHECK OPTION — prevents DML that violates the WHERE
+CREATE VIEW high_sal_view AS
+SELECT * FROM employees WHERE salary > 10000
+WITH CHECK OPTION;
+
+-- WITH READ ONLY — no DML through this view
+CREATE VIEW emp_readonly AS
+SELECT * FROM employees WITH READ ONLY;
+
+-- FORCE VIEW — creates even if base table doesn't exist yet
+CREATE FORCE VIEW future_view AS
+SELECT * FROM future_table;</pre>
+
+<div class="cross-q">
+  <strong>Q: Can you perform DML on a view?</strong><br>
+  A: Yes, IF based on a single table and doesn't use GROUP BY, DISTINCT, aggregate functions, or ROWNUM.<br><br>
+  <strong>Q: What is a materialized view?</strong><br>
+  A: A view whose result is physically stored (like a snapshot table). Refreshed periodically. Used in DWH for performance.
+</div>
+
+<!-- 17. Sequences -->
+<h2>17. Creating Sequences</h2>
+<pre>CREATE SEQUENCE emp_seq
+  START WITH 1000
+  INCREMENT BY 1
+  MAXVALUE 9999999
+  NOCYCLE
+  CACHE 20;
+
+-- Usage
+INSERT INTO employees (employee_id, first_name)
+VALUES (emp_seq.NEXTVAL, 'John');
+
+SELECT emp_seq.CURRVAL FROM dual;  -- current value (same session only)
+ALTER SEQUENCE emp_seq INCREMENT BY 5;
+DROP SEQUENCE emp_seq;</pre>
+
+<div class="cross-q">
+  <strong>Q: Can a sequence guarantee no gaps?</strong><br>
+  A: No — if a transaction rolls back, the sequence value is lost. Sequences are non-transactional.<br><br>
+  <strong>Q: What is CACHE in sequence?</strong><br>
+  A: Oracle pre-allocates N values in memory for fast generation. On instance crash, cached values are lost, causing gaps.
+</div>
+
+<!-- 18. Synonyms -->
+<h2>18. Synonyms</h2>
+<pre>CREATE PUBLIC SYNONYM emp FOR hr.employees;  -- all users can access
+CREATE SYNONYM emp FOR hr.employees;          -- current user only
+
+SELECT * FROM emp;   -- transparently accesses hr.employees
+
+DROP SYNONYM emp;
+DROP PUBLIC SYNONYM emp;</pre>
+
+<p><strong>Why use Synonyms?</strong> Hide schema names. If underlying table moves, only update the synonym — applications don't change. Adds a security layer.</p>
+
+<!-- 19. Indexes -->
+<h2>19. Indexes</h2>
+<pre>-- B-Tree Index (default) — high cardinality columns
+CREATE INDEX emp_name_idx ON employees(last_name);
+
+-- Composite index
+CREATE INDEX emp_dept_sal ON employees(department_id, salary);
+
+-- Unique index
+CREATE UNIQUE INDEX emp_email_idx ON employees(email);
+
+-- Bitmap index — low cardinality (gender, status, yes/no)
+CREATE BITMAP INDEX emp_gender_idx ON employees(gender);
+
+-- Function-based index
+CREATE INDEX emp_upper_name ON employees(UPPER(last_name));
+-- Now this uses the index:
+SELECT * FROM employees WHERE UPPER(last_name) = 'KING';
+
+DROP INDEX emp_name_idx;</pre>
+
+<div class="cross-q">
+  <strong>Q: When does Oracle NOT use an index?</strong><br>
+  A: Function applied to indexed column without function-based index; full table scan is cheaper (small tables); low cardinality with B-tree index.<br><br>
+  <strong>Q: Difference between B-Tree and Bitmap index?</strong><br>
+  A: B-Tree: best for high cardinality (unique/near-unique). Bitmap: best for low cardinality (M/F, Y/N). Bitmap terrible for OLTP (row locking), great for DWH.
+</div>
+
+<!-- 20. DCL -->
+<h2>20. Controlling User Access — DCL</h2>
+<pre>CREATE USER analyst IDENTIFIED BY Password123;
+GRANT CREATE SESSION TO analyst;
+GRANT CREATE TABLE  TO analyst;
+GRANT SELECT, INSERT ON employees TO analyst;
+GRANT SELECT ON employees TO analyst WITH GRANT OPTION;
+REVOKE SELECT ON employees FROM analyst;
+
+-- Roles
+CREATE ROLE hr_role;
+GRANT SELECT ON employees TO hr_role;
+GRANT hr_role TO analyst;</pre>
+
+<div class="cross-q">
+  <strong>Q: Difference between WITH ADMIN OPTION and WITH GRANT OPTION?</strong><br>
+  A: ADMIN OPTION: for system privileges — recipient can grant to others; revoke does NOT cascade. GRANT OPTION: for object privileges — revoke DOES cascade to all grantor's grantees.
+</div>
+
+<!-- ===================== PART 3 ===================== -->
+<div class="part-header">PART 3 — PL/SQL</div>
+
+<!-- 21. PL/SQL Intro -->
+<h2>21. Introduction to PL/SQL</h2>
+<h3>What is PL/SQL?</h3>
+<p><strong>Procedural Language extension to SQL</strong> — adds programming constructs (loops, conditions, variables, error handling) to SQL. Entire block sent to DB at once for better performance.</p>
+
+<h3>Block Structure</h3>
+<pre>DECLARE
+  -- Variable declarations (optional)
+  v_name VARCHAR2(50);
+  v_sal  NUMBER := 0;
+BEGIN
+  -- Executable statements (mandatory)
+  SELECT first_name INTO v_name
+  FROM employees WHERE employee_id = 100;
+  DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+EXCEPTION
+  -- Error handling (optional)
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Employee not found');
+END;
+/</pre>
+
+<table>
+  <tr><th>Feature</th><th>SQL</th><th>PL/SQL</th></tr>
+  <tr><td>Procedural logic</td><td>❌</td><td>✅</td></tr>
+  <tr><td>Variables</td><td>❌</td><td>✅</td></tr>
+  <tr><td>Loops</td><td>❌</td><td>✅</td></tr>
+  <tr><td>Error handling</td><td>❌</td><td>✅</td></tr>
+  <tr><td>Network round trips</td><td>1 per statement</td><td>1 per block</td></tr>
+</table>
+
+<!-- 22. Variables -->
+<h2>22. Declaring Variables</h2>
+<pre>DECLARE
+  v_name    VARCHAR2(50);
+  v_salary  NUMBER(10,2) := 50000;
+  v_date    DATE         := SYSDATE;
+  v_flag    BOOLEAN      := TRUE;
+  c_tax     CONSTANT NUMBER := 0.18;  -- constant
+
+  -- %TYPE — inherits column's datatype automatically
+  v_emp_name employees.first_name%TYPE;
+  v_emp_sal  employees.salary%TYPE;
+
+  -- %ROWTYPE — inherits entire row structure
+  v_emp_rec  employees%ROWTYPE;
+BEGIN
+  -- SELECT INTO for single row
+  SELECT first_name, salary INTO v_emp_name, v_emp_sal
+  FROM employees WHERE employee_id = 100;
+
+  -- %ROWTYPE usage
+  SELECT * INTO v_emp_rec FROM employees WHERE employee_id = 100;
+  DBMS_OUTPUT.PUT_LINE(v_emp_rec.first_name || ' - ' || v_emp_rec.salary);
+END;
+/</pre>
+
+<div class="cross-q">
+  <strong>Q: Why use %TYPE instead of hardcoding the datatype?</strong><br>
+  A: If the column type changes (e.g., salary from NUMBER(8) to NUMBER(10,2)), %TYPE automatically picks up the new type. Hardcoded type would break silently or cause runtime errors.
+</div>
+
+<!-- 23. Control Statements -->
+<h2>23. Control Statements</h2>
+<pre>-- IF-ELSIF-ELSE
+IF v_salary > 100000 THEN
+  v_grade := 'A';
+ELSIF v_salary > 50000 THEN
+  v_grade := 'B';
+ELSE
+  v_grade := 'C';
+END IF;
+
+-- CASE
+v_result := CASE v_dept_id
+              WHEN 10 THEN 'Admin'
+              WHEN 20 THEN 'HR'
+              ELSE 'Other'
+            END;
+
+-- Basic LOOP
+LOOP
+  v_count := v_count + 1;
+  EXIT WHEN v_count >= 10;
+END LOOP;
+
+-- WHILE LOOP
+WHILE v_count < 10 LOOP
+  v_count := v_count + 1;
+END LOOP;
+
+-- FOR LOOP (automatically manages counter)
+FOR i IN 1..10 LOOP
+  DBMS_OUTPUT.PUT_LINE('Count: ' || i);
+END LOOP;
+
+-- REVERSE FOR LOOP
+FOR i IN REVERSE 1..10 LOOP
+  DBMS_OUTPUT.PUT_LINE(i);  -- prints 10, 9, 8 ... 1
+END LOOP;</pre>
+
+<!-- 24. Composite Datatypes -->
+<h2>24. Composite Datatypes</h2>
+<pre>-- PL/SQL Record
+DECLARE
+  TYPE emp_rec_type IS RECORD (
+    emp_id   NUMBER,
+    emp_name VARCHAR2(50),
+    salary   NUMBER
+  );
+  v_emp emp_rec_type;
+BEGIN
+  v_emp.emp_id := 101;  v_emp.emp_name := 'John';  v_emp.salary := 60000;
+END;
+
+-- Associative Array (Index-By Table)
+DECLARE
+  TYPE salary_table IS TABLE OF NUMBER INDEX BY PLS_INTEGER;
+  v_salaries salary_table;
+BEGIN
+  v_salaries(1) := 50000;
+  v_salaries(2) := 75000;
+  DBMS_OUTPUT.PUT_LINE(v_salaries(1));
+END;
+
+-- Nested Table (no size limit)
+DECLARE
+  TYPE name_list IS TABLE OF VARCHAR2(50);
+  v_names name_list := name_list('Alice', 'Bob', 'Charlie');
+BEGIN
+  FOR i IN 1..v_names.COUNT LOOP
+    DBMS_OUTPUT.PUT_LINE(v_names(i));
+  END LOOP;
+END;
+
+-- VARRAY (fixed maximum size)
+DECLARE
+  TYPE month_array IS VARRAY(12) OF VARCHAR2(10);
+  v_months month_array := month_array('Jan','Feb','Mar');
+END;</pre>
+
+<div class="cross-q">
+  <strong>Q: Difference between Nested Table and VARRAY?</strong><br>
+  A: VARRAY has a fixed maximum size and preserves element order. Nested Table has no size limit and doesn't guarantee order when stored in DB. Nested table allows DELETE of individual elements; VARRAY doesn't.
+</div>
+
+<!-- 25. Cursors -->
+<h2>25. Cursors</h2>
+<h3>Implicit Cursor</h3>
+<p>Oracle automatically creates for every DML and single-row SELECT INTO statement.</p>
+<pre>UPDATE employees SET salary = salary * 1.1 WHERE department_id = 10;
+IF SQL%ROWCOUNT > 0 THEN
+  DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' rows updated');
+END IF;
+-- Attributes: SQL%FOUND, SQL%NOTFOUND, SQL%ROWCOUNT, SQL%ISOPEN</pre>
+
+<h3>Explicit Cursor — Basic Pattern</h3>
+<pre>DECLARE
+  CURSOR emp_cursor IS
+    SELECT first_name, salary FROM employees WHERE department_id = 10;
+  v_name employees.first_name%TYPE;
+  v_sal  employees.salary%TYPE;
+BEGIN
+  OPEN emp_cursor;
+  LOOP
+    FETCH emp_cursor INTO v_name, v_sal;
+    EXIT WHEN emp_cursor%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(v_name || ' - ' || v_sal);
+  END LOOP;
+  CLOSE emp_cursor;
+END;
+/</pre>
+
+<h3>Cursor FOR LOOP (Best Practice — auto open/fetch/close)</h3>
+<pre>BEGIN
+  FOR rec IN (SELECT first_name, salary FROM employees WHERE department_id = 10)
+  LOOP
+    DBMS_OUTPUT.PUT_LINE(rec.first_name || ' - ' || rec.salary);
+  END LOOP;
+END;
+/</pre>
+
+<!-- 26. Advanced Cursors -->
+<h2>26. Advanced Explicit Cursor Concepts</h2>
+<pre>-- Cursor with Parameters
+DECLARE
+  CURSOR emp_cursor(p_dept_id NUMBER) IS
+    SELECT first_name, salary FROM employees WHERE department_id = p_dept_id;
+BEGIN
+  FOR rec IN emp_cursor(10) LOOP DBMS_OUTPUT.PUT_LINE(rec.first_name); END LOOP;
+  FOR rec IN emp_cursor(20) LOOP DBMS_OUTPUT.PUT_LINE(rec.first_name); END LOOP;
+END;
+
+-- FOR UPDATE cursor (lock the rows)
+DECLARE
+  CURSOR sal_cursor IS
+    SELECT employee_id, salary FROM employees
+    WHERE department_id = 10 FOR UPDATE OF salary;
+BEGIN
+  FOR rec IN sal_cursor LOOP
+    UPDATE employees SET salary = rec.salary * 1.1
+    WHERE CURRENT OF sal_cursor;   -- updates the row cursor is ON
+  END LOOP;
+  COMMIT;
+END;</pre>
+
+<div class="cross-q">
+  <strong>Q: What is WHERE CURRENT OF?</strong><br>
+  A: Updates/deletes the exact row the cursor is currently positioned on. Requires FOR UPDATE clause on the cursor.<br><br>
+  <strong>Q: Cursor attributes summary?</strong><br>
+  A: %FOUND (last fetch got a row), %NOTFOUND (last fetch got nothing), %ROWCOUNT (rows fetched so far), %ISOPEN (cursor is open).
+</div>
+
+<!-- 27. Exception Handling -->
+<h2>27. Exception Handling</h2>
+<pre>DECLARE
+  v_salary employees.salary%TYPE;
+BEGIN
+  SELECT salary INTO v_salary FROM employees WHERE employee_id = 9999;
+
+EXCEPTION
+  WHEN NO_DATA_FOUND    THEN DBMS_OUTPUT.PUT_LINE('Not found');
+  WHEN TOO_MANY_ROWS    THEN DBMS_OUTPUT.PUT_LINE('Multiple rows returned');
+  WHEN ZERO_DIVIDE      THEN DBMS_OUTPUT.PUT_LINE('Division by zero');
+  WHEN OTHERS           THEN
+    DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+    DBMS_OUTPUT.PUT_LINE('Code: ' || SQLCODE);
+END;
+
+-- User-defined exception
+DECLARE
+  e_invalid_salary EXCEPTION;
+  v_sal NUMBER := -100;
+BEGIN
+  IF v_sal < 0 THEN RAISE e_invalid_salary; END IF;
+EXCEPTION
+  WHEN e_invalid_salary THEN DBMS_OUTPUT.PUT_LINE('Salary cannot be negative');
+END;
+
+-- RAISE_APPLICATION_ERROR (custom error code + message)
+IF v_sal < 0 THEN
+  RAISE_APPLICATION_ERROR(-20001, 'Salary cannot be negative');
+END IF;</pre>
+
+<div class="cross-q">
+  <strong>Q: Range for user-defined errors?</strong><br>
+  A: -20000 to -20999 — reserved for RAISE_APPLICATION_ERROR.<br><br>
+  <strong>Q: What are SQLERRM and SQLCODE?</strong><br>
+  A: SQLCODE: error number (negative for Oracle errors, 0 for success, +100 for NO_DATA_FOUND). SQLERRM: full error message text.
+</div>
+
+<!-- 28. Procedures -->
+<h2>28. Creating Procedures</h2>
+<pre>CREATE OR REPLACE PROCEDURE update_salary (
+  p_emp_id  IN  NUMBER,
+  p_percent IN  NUMBER,
+  p_new_sal OUT NUMBER
+)
+IS
+  v_old_sal employees.salary%TYPE;
+BEGIN
+  SELECT salary INTO v_old_sal FROM employees WHERE employee_id = p_emp_id;
+  p_new_sal := v_old_sal * (1 + p_percent/100);
+  UPDATE employees SET salary = p_new_sal WHERE employee_id = p_emp_id;
+  COMMIT;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Employee not found: ' || p_emp_id);
+END update_salary;
+/
+
+-- Calling the procedure
+DECLARE
+  v_new_salary NUMBER;
+BEGIN
+  update_salary(101, 10, v_new_salary);
+  DBMS_OUTPUT.PUT_LINE('New salary: ' || v_new_salary);
+END;
+/</pre>
+
+<h3>Parameter Modes</h3>
+<table>
+  <tr><th>Mode</th><th>Direction</th><th>Can Read?</th><th>Can Write?</th></tr>
+  <tr><td>IN</td><td>Caller → Procedure</td><td>✅ Yes</td><td>❌ No</td></tr>
+  <tr><td>OUT</td><td>Procedure → Caller</td><td>❌ No</td><td>✅ Yes</td></tr>
+  <tr><td>IN OUT</td><td>Both ways</td><td>✅ Yes</td><td>✅ Yes</td></tr>
+</table>
+
+<div class="cross-q">
+  <strong>Q: Difference between Procedure and Function?</strong><br>
+  A: Function MUST return a value via RETURN and CAN be used in SQL SELECT/WHERE. Procedure uses OUT parameters and CANNOT be used directly in SQL.
+</div>
+
+<!-- 29. Functions -->
+<h2>29. Creating Functions</h2>
+<pre>CREATE OR REPLACE FUNCTION get_annual_salary (
+  p_emp_id IN NUMBER
+) RETURN NUMBER
+IS
+  v_salary employees.salary%TYPE;
+BEGIN
+  SELECT salary INTO v_salary FROM employees WHERE employee_id = p_emp_id;
+  RETURN v_salary * 12;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN RETURN NULL;
+END get_annual_salary;
+/
+
+-- KEY ADVANTAGE: usable directly in SQL
+SELECT first_name, get_annual_salary(employee_id) AS annual_sal
+FROM employees;
+
+-- Also usable in PL/SQL
+DECLARE v_annual NUMBER;
+BEGIN
+  v_annual := get_annual_salary(101);
+  DBMS_OUTPUT.PUT_LINE(v_annual);
+END;</pre>
+
+<div class="cross-q">
+  <strong>Q: Can a function have DML (INSERT/UPDATE/DELETE)?</strong><br>
+  A: Yes in PL/SQL context. But if called from SQL (SELECT statement), Oracle restricts DML to prevent side effects. Use PRAGMA AUTONOMOUS_TRANSACTION if DML from SQL context is needed.
+</div>
+
+<!-- 30. Packages -->
+<h2>30. Creating Packages</h2>
+<h3>Why Packages?</h3>
+<ul>
+  <li>Group related procedures and functions together</li>
+  <li><strong>Overloading</strong> — same name, different parameter signatures</li>
+  <li><strong>Package-level variables</strong> persist for the entire session</li>
+  <li>Better performance — entire package loaded into memory on first call</li>
+  <li>Encapsulation — private procedures hidden in body, public in spec</li>
+</ul>
+
+<pre>-- PACKAGE SPECIFICATION (public interface)
+CREATE OR REPLACE PACKAGE emp_pkg IS
+  g_tax_rate NUMBER := 0.18;   -- public package variable (session-level)
+
+  PROCEDURE hire_employee(p_name IN VARCHAR2, p_salary IN NUMBER);
+  PROCEDURE fire_employee(p_emp_id IN NUMBER);
+  FUNCTION  get_salary(p_emp_id IN NUMBER)   RETURN NUMBER;  -- overloaded
+  FUNCTION  get_salary(p_name   IN VARCHAR2) RETURN NUMBER;  -- overloaded
+END emp_pkg;
+/
+
+-- PACKAGE BODY (implementation)
+CREATE OR REPLACE PACKAGE BODY emp_pkg IS
+
+  PROCEDURE hire_employee(p_name IN VARCHAR2, p_salary IN NUMBER) IS
+  BEGIN
+    INSERT INTO employees (first_name, salary) VALUES (p_name, p_salary);
+    COMMIT;
+  END;
+
+  PROCEDURE fire_employee(p_emp_id IN NUMBER) IS
+  BEGIN
+    DELETE FROM employees WHERE employee_id = p_emp_id;
+    COMMIT;
+  END;
+
+  FUNCTION get_salary(p_emp_id IN NUMBER) RETURN NUMBER IS
+    v_sal NUMBER;
+  BEGIN
+    SELECT salary INTO v_sal FROM employees WHERE employee_id = p_emp_id;
+    RETURN v_sal;
+  END;
+
+  FUNCTION get_salary(p_name IN VARCHAR2) RETURN NUMBER IS
+    v_sal NUMBER;
+  BEGIN
+    SELECT salary INTO v_sal FROM employees WHERE first_name = p_name;
+    RETURN v_sal;
+  END;
+
+END emp_pkg;
+/
+
+-- Calling package subprograms
+BEGIN
+  emp_pkg.hire_employee('Alice', 60000);
+  DBMS_OUTPUT.PUT_LINE(emp_pkg.get_salary(101));
+  DBMS_OUTPUT.PUT_LINE(emp_pkg.g_tax_rate);  -- package variable
+END;</pre>
+
+<!-- 31. Oracle Supplied Packages -->
+<h2>31. Oracle Supplied Packages</h2>
+<table>
+  <tr><th>Package</th><th>Purpose</th></tr>
+  <tr><td>DBMS_OUTPUT</td><td>Print to console — PUT_LINE</td></tr>
+  <tr><td>DBMS_SQL</td><td>Dynamic SQL execution</td></tr>
+  <tr><td>DBMS_SCHEDULER</td><td>Schedule PL/SQL jobs</td></tr>
+  <tr><td>DBMS_METADATA</td><td>Extract DDL of objects</td></tr>
+  <tr><td>DBMS_LOB</td><td>Manipulate Large Objects (CLOB, BLOB)</td></tr>
+  <tr><td>DBMS_RANDOM</td><td>Generate random numbers/strings</td></tr>
+  <tr><td>DBMS_STATS</td><td>Gather optimizer statistics</td></tr>
+  <tr><td>UTL_FILE</td><td>Read/write OS files from PL/SQL</td></tr>
+  <tr><td>UTL_HTTP</td><td>HTTP calls from Oracle</td></tr>
+  <tr><td>UTL_MAIL</td><td>Send emails from Oracle</td></tr>
+</table>
+
+<pre>-- DBMS_RANDOM
+SELECT DBMS_RANDOM.VALUE(1, 100)    FROM dual;  -- random number 1-100
+SELECT DBMS_RANDOM.STRING('U', 10)  FROM dual;  -- 10 random uppercase chars
+
+-- UTL_FILE — write to OS file
+DECLARE
+  v_file UTL_FILE.FILE_TYPE;
+BEGIN
+  v_file := UTL_FILE.FOPEN('MY_DIR', 'output.txt', 'W');
+  UTL_FILE.PUT_LINE(v_file, 'Hello from Oracle');
+  UTL_FILE.FCLOSE(v_file);
+END;</pre>
+
+<!-- 32. LOBs -->
+<h2>32. Manipulating Large Objects (LOBs)</h2>
+<table>
+  <tr><th>Type</th><th>Content</th><th>Max Size</th></tr>
+  <tr><td>CLOB</td><td>Character data (text, XML)</td><td>4 GB</td></tr>
+  <tr><td>BLOB</td><td>Binary data (images, PDFs, videos)</td><td>4 GB</td></tr>
+  <tr><td>NCLOB</td><td>Unicode character data</td><td>4 GB</td></tr>
+  <tr><td>BFILE</td><td>Pointer to external OS file (read-only)</td><td>OS limit</td></tr>
+</table>
+
+<pre>CREATE TABLE documents (
+  doc_id   NUMBER PRIMARY KEY,
+  doc_name VARCHAR2(100),
+  content  CLOB,
+  image    BLOB
+);
+
+DECLARE
+  v_clob CLOB;
+BEGIN
+  SELECT content INTO v_clob FROM documents WHERE doc_id = 1;
+  DBMS_OUTPUT.PUT_LINE('Length: ' || DBMS_LOB.GETLENGTH(v_clob));
+  DBMS_OUTPUT.PUT_LINE(DBMS_LOB.SUBSTR(v_clob, 100, 1));  -- chars 1-100
+END;</pre>
+
+<!-- 33. DML Triggers -->
+<h2>33. Creating Database Triggers (DML)</h2>
+<h3>What is a Trigger?</h3>
+<p>A <strong>PL/SQL block that fires automatically</strong> when a specific event occurs — without being explicitly called.</p>
+
+<pre>-- BEFORE ROW trigger — validate before insert/update
+CREATE OR REPLACE TRIGGER emp_salary_check
+BEFORE INSERT OR UPDATE ON employees
+FOR EACH ROW
+BEGIN
+  IF :NEW.salary &lt; 0 THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Salary cannot be negative');
+  END IF;
+  :NEW.last_updated := SYSDATE;   -- auto-set audit column
+END;
+/
+
+-- AFTER ROW trigger — audit trail
+CREATE OR REPLACE TRIGGER emp_audit_trigger
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+  INSERT INTO emp_audit (employee_id, old_salary, new_salary, changed_on)
+  VALUES (:OLD.employee_id, :OLD.salary, :NEW.salary, SYSDATE);
+END;
+/
+
+-- STATEMENT-LEVEL trigger (no FOR EACH ROW)
+CREATE OR REPLACE TRIGGER prevent_weekend_update
+BEFORE INSERT OR UPDATE OR DELETE ON employees
+BEGIN
+  IF TO_CHAR(SYSDATE, 'DY') IN ('SAT', 'SUN') THEN
+    RAISE_APPLICATION_ERROR(-20002, 'No DML allowed on weekends');
+  END IF;
+END;
+/
+
+-- INSTEAD OF trigger (for views that can't have direct DML)
+CREATE OR REPLACE TRIGGER emp_view_insert
+INSTEAD OF INSERT ON emp_dept_view
+FOR EACH ROW
+BEGIN
+  INSERT INTO employees (employee_id, first_name)
+  VALUES (:NEW.employee_id, :NEW.first_name);
+END;
+/</pre>
+
+<h3>:NEW and :OLD Pseudorecords</h3>
+<table>
+  <tr><th>Trigger Type</th><th>:OLD</th><th>:NEW</th></tr>
+  <tr><td>INSERT</td><td>NULL</td><td>Values being inserted</td></tr>
+  <tr><td>UPDATE</td><td>Values before update</td><td>Values after update</td></tr>
+  <tr><td>DELETE</td><td>Values being deleted</td><td>NULL</td></tr>
+</table>
+
+<h3>Trigger Firing Matrix</h3>
+<table>
+  <tr><th>Timing</th><th>Statement Level</th><th>Row Level (FOR EACH ROW)</th></tr>
+  <tr><td>BEFORE</td><td>Once before the DML</td><td>Once per row before change</td></tr>
+  <tr><td>AFTER</td><td>Once after the DML</td><td>Once per row after change</td></tr>
+  <tr><td>INSTEAD OF</td><td>—</td><td>Replaces DML on views</td></tr>
+</table>
+
+<div class="cross-q">
+  <strong>Q: What is a mutating table error?</strong><br>
+  A: A row-level trigger cannot query or modify the same table it's triggered on. Solution: use a compound trigger or statement-level trigger.<br><br>
+  <strong>Q: How many triggers can fire in order on one DML?</strong><br>
+  A: Up to 12 — BEFORE STATEMENT, BEFORE ROW, AFTER ROW, AFTER STATEMENT × 3 DML types. Use FOLLOWS clause to control order.
+</div>
+
+<!-- 34. DDL Triggers -->
+<h2>34. Creating Triggers on DDL Statements</h2>
+<pre>-- Prevent DROP on schema
+CREATE OR REPLACE TRIGGER prevent_drop
+BEFORE DROP ON SCHEMA
+BEGIN
+  RAISE_APPLICATION_ERROR(-20003,
+    'DROP not allowed! Object: ' || ORA_DICT_OBJ_NAME);
+END;
+/
+
+-- Audit all DDL changes
+CREATE OR REPLACE TRIGGER ddl_audit_trigger
+AFTER CREATE OR ALTER OR DROP ON SCHEMA
+BEGIN
+  INSERT INTO ddl_audit (
+    ddl_type, object_type, object_name, executed_by, executed_at
+  ) VALUES (
+    ORA_SYSEVENT,
+    ORA_DICT_OBJ_TYPE,
+    ORA_DICT_OBJ_NAME,
+    USER,
+    SYSDATE
+  );
+END;
+/</pre>
+
+<h3>DDL Event Functions</h3>
+<table>
+  <tr><th>Function</th><th>Returns</th></tr>
+  <tr><td>ORA_SYSEVENT</td><td>Event name: CREATE, DROP, ALTER</td></tr>
+  <tr><td>ORA_DICT_OBJ_TYPE</td><td>Object type: TABLE, INDEX, VIEW</td></tr>
+  <tr><td>ORA_DICT_OBJ_NAME</td><td>Object name</td></tr>
+  <tr><td>ORA_DICT_OBJ_OWNER</td><td>Object owner/schema</td></tr>
+</table>
+
+<!-- 35. System Event Triggers -->
+<h2>35. Creating Triggers on System Events</h2>
+<pre>-- LOGON trigger — fires when user logs in
+CREATE OR REPLACE TRIGGER logon_audit
+AFTER LOGON ON DATABASE
+BEGIN
+  INSERT INTO login_audit (username, login_time, ip_address)
+  VALUES (USER, SYSDATE, SYS_CONTEXT('USERENV','IP_ADDRESS'));
+END;
+/
+
+-- LOGOFF trigger
+CREATE OR REPLACE TRIGGER logoff_audit
+BEFORE LOGOFF ON DATABASE
+BEGIN
+  INSERT INTO login_audit (username, logoff_time)
+  VALUES (USER, SYSDATE);
+END;
+/
+
+-- STARTUP trigger
+CREATE OR REPLACE TRIGGER db_startup
+AFTER STARTUP ON DATABASE
+BEGIN
+  INSERT INTO db_events (event_type, event_time)
+  VALUES ('STARTUP', SYSDATE);
+END;
+/
+
+-- SERVERERROR trigger — capture all DB errors
+CREATE OR REPLACE TRIGGER server_error_log
+AFTER SERVERERROR ON DATABASE
+BEGIN
+  INSERT INTO error_log (error_code, error_time, username)
+  VALUES (ORA_SERVER_ERROR(1), SYSDATE, USER);
+END;
+/</pre>
+
+<div class="cross-q">
+  <strong>Q: What is SYS_CONTEXT?</strong><br>
+  A: Returns session-level context information. USERENV namespace provides: IP_ADDRESS, SESSION_USER, DB_NAME, OS_USER, etc.<br><br>
+  <strong>Q: Difference between DDL trigger ON SCHEMA vs ON DATABASE?</strong><br>
+  A: ON SCHEMA fires only for the current user's objects. ON DATABASE fires for all users across the entire database (requires DBA privilege).
+</div>
+
+<!-- 36. Dependencies -->
+<h2>36. Managing Dependencies</h2>
+<h3>What are Dependencies?</h3>
+<p>When one object references another — a view referencing a table, a procedure calling another procedure. If the referenced object changes, dependent objects may become INVALID.</p>
+
+<pre>-- Check status of all objects
+SELECT object_name, object_type, status
+FROM user_objects WHERE status = 'INVALID';
+
+-- Check dependencies
+SELECT name, type, referenced_name, referenced_type
+FROM user_dependencies WHERE referenced_name = 'EMPLOYEES';
+
+-- Recompile individual objects
+ALTER PROCEDURE my_proc COMPILE;
+ALTER PACKAGE my_pkg COMPILE;
+ALTER PACKAGE BODY my_pkg COMPILE BODY;
+ALTER VIEW my_view COMPILE;
+
+-- Recompile ALL invalid objects in the schema at once
+BEGIN
+  DBMS_UTILITY.COMPILE_SCHEMA(schema => USER);
+END;</pre>
+
+<div class="cross-q">
+  <strong>Q: What happens when a table is modified and a dependent procedure exists?</strong><br>
+  A: The procedure becomes INVALID. Oracle auto-recompiles on next call if change is compatible. If not, it stays INVALID and throws an error at runtime.<br><br>
+  <strong>Q: Difference between direct and indirect dependency?</strong><br>
+  A: Direct — procedure directly references a table. Indirect — procedure calls another procedure that references the table.<br><br>
+  <strong>Q: What is a fine-grained dependency?</strong><br>
+  A: From Oracle 11g, if a procedure references column A of a table, and only column B is added, the procedure stays VALID (column-level dependency tracking).
+</div>
+
+<!-- Final Interview Tips -->
+<div class="part-header" style="page-break-before: always;">INTERVIEW TIPS — ANSWER FRAMEWORK</div>
+
+<h2>Master Answer Template</h2>
+<p>When a judge asks you to "explain X", structure your answer as:</p>
+<ol style="margin: 12px 0 12px 24px; line-height: 2;">
+  <li><strong>What</strong> — Define it in one sentence</li>
+  <li><strong>Why</strong> — What problem does it solve</li>
+  <li><strong>How</strong> — Show the syntax briefly</li>
+  <li><strong>When</strong> — Give a real-world scenario</li>
+  <li><strong>Edge case</strong> — Mention one gotcha or comparison</li>
+</ol>
+
+<h3>Example — Trigger Answer</h3>
+<div class="note">
+"A trigger is a PL/SQL block that auto-executes on a database event without being explicitly called. We use it to enforce business rules, maintain audit trails, and prevent invalid operations. In my project, I used a BEFORE INSERT trigger to validate that salary cannot be negative, and an AFTER UPDATE trigger to populate an audit table automatically. The key gotcha is avoiding mutating table errors — a row-level trigger cannot query or modify the same table it's triggered on. The fix is using a compound trigger or an autonomous transaction."
+</div>
+
+<h2>Quick Reference — Common Confusions</h2>
+<table>
+  <tr><th>Question</th><th>Answer</th></tr>
+  <tr><td>DELETE vs TRUNCATE</td><td>DELETE = DML, rollbackable, slow. TRUNCATE = DDL, instant, no rollback</td></tr>
+  <tr><td>UNION vs UNION ALL</td><td>UNION removes duplicates. UNION ALL keeps all (faster)</td></tr>
+  <tr><td>WHERE vs HAVING</td><td>WHERE: before GROUP BY. HAVING: after GROUP BY</td></tr>
+  <tr><td>Procedure vs Function</td><td>Function returns value, usable in SQL. Procedure uses OUT params, not in SQL</td></tr>
+  <tr><td>%TYPE vs %ROWTYPE</td><td>%TYPE: single column type. %ROWTYPE: entire row structure</td></tr>
+  <tr><td>IN vs EXISTS</td><td>IN: compares all values. EXISTS: stops at first match (faster for large sets)</td></tr>
+  <tr><td>RANK vs DENSE_RANK</td><td>RANK: skips ranks after ties (1,2,2,4). DENSE_RANK: no gaps (1,2,2,3)</td></tr>
+  <tr><td>B-Tree vs Bitmap</td><td>B-Tree: high cardinality. Bitmap: low cardinality, DWH only</td></tr>
+  <tr><td>Implicit vs Explicit cursor</td><td>Implicit: auto by Oracle for DML. Explicit: programmer-controlled for multi-row queries</td></tr>
+  <tr><td>Package Spec vs Body</td><td>Spec = public interface. Body = implementation (can have private code)</td></tr>
+</table>
+
+<br>
+<p style="text-align:center; color:#888; font-size:11px; margin-top:30px;">
+  Oracle SQL &amp; PL/SQL Complete Guide &nbsp;|&nbsp; IMS Engineering College &nbsp;|&nbsp; HCL Campus Hackathon 2026
+</p>
+
+</body>
+</html>

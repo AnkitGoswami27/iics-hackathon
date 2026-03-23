@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hackathon Practice Guide — IICS + PL/SQL + Interview Prep</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a1a; background: #fff; padding: 30px; }
+  h1 { font-size: 26px; color: #1a6bc4; border-bottom: 3px solid #1a6bc4; padding-bottom: 10px; margin: 30px 0 20px; text-align: center; }
+  h2 { font-size: 19px; color: #fff; background: #1a3a5c; padding: 8px 14px; margin: 30px 0 12px; border-radius: 4px; }
+  h3 { font-size: 15px; color: #1a6bc4; margin: 18px 0 8px; border-left: 4px solid #1a6bc4; padding-left: 10px; }
+  h4 { font-size: 13px; color: #c0392b; margin: 12px 0 6px; font-weight: bold; }
+  p { margin: 8px 0; line-height: 1.6; }
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 14px 16px; border-radius: 6px; font-size: 11.5px;
+        font-family: 'Consolas', 'Courier New', monospace; white-space: pre-wrap; word-wrap: break-word;
+        margin: 10px 0; border-left: 4px solid #89b4fa; }
+  code { background: #eef2ff; color: #c0392b; padding: 1px 5px; border-radius: 3px;
+         font-family: 'Consolas', monospace; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+  th { background: #1a3a5c; color: #fff; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+  .part-header { background: linear-gradient(135deg, #1a6bc4, #0d3b73); color: white; text-align: center;
+                 padding: 15px; font-size: 22px; font-weight: bold; margin: 40px 0 10px; border-radius: 6px; }
+  .qa { background: #fff8e1; border-left: 4px solid #f39c12; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .qa strong { color: #c0392b; }
+  .answer { background: #e8f8e8; border-left: 4px solid #27ae60; padding: 10px 14px; margin: 2px 0 10px 10px; border-radius: 0 4px 4px 0; }
+  .note { background: #e8f4fd; border-left: 4px solid #2980b9; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .tip  { background: #fef9e7; border-left: 4px solid #f1c40f; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  ul { margin: 8px 0 8px 24px; }
+  li { margin: 4px 0; line-height: 1.5; }
+  .badge { display: inline-block; background: #1a6bc4; color: #fff; border-radius: 10px;
+           padding: 1px 10px; font-size: 11px; margin-left: 6px; font-weight: bold; }
+  .badge-green  { background: #27ae60; }
+  .badge-orange { background: #e67e22; }
+  .badge-red    { background: #c0392b; }
+  .cover { text-align: center; padding: 60px 40px; border: 3px solid #1a6bc4; margin-bottom: 40px; border-radius: 10px; background: #f0f6ff; }
+  .cover h1 { font-size: 34px; border: none; color: #1a3a5c; }
+  .cover .subtitle { font-size: 16px; color: #555; margin-top: 10px; }
+  .cover .meta { margin-top: 20px; font-size: 13px; color: #333; }
+  .toc { background: #f7f9fc; border: 1px solid #cce0f5; padding: 20px; border-radius: 6px; margin: 20px 0; }
+  .toc ol { margin-left: 20px; }
+  .toc li { margin: 5px 0; color: #1a6bc4; line-height: 1.6; }
+  .schema-box { background: #f0f6ff; border: 1px solid #b0cce8; padding: 14px; border-radius: 6px; margin: 10px 0; font-family: 'Consolas', monospace; font-size: 12px; }
+  .interview-timer { background: #1a3a5c; color: #fff; padding: 8px 16px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Hackathon Practice Guide</h1>
+  <h1 style="font-size:22px; margin-top:8px; color:#1a6bc4;">IICS &nbsp;|&nbsp; PL/SQL &nbsp;|&nbsp; SQL Queries &nbsp;|&nbsp; Interview Prep</h1>
+  <div class="subtitle">Retail Data Pipeline — DIM + FACT Star Schema</div>
+  <div class="meta">
+    <p><strong>Hackathon Date:</strong> March 23, 2026 &nbsp;|&nbsp; <strong>Prepared:</strong> March 16, 2026</p>
+    <p><strong>Schema:</strong> DIM_CUSTOMERS &middot; DIM_PRODUCTS &middot; DIM_ORDERS &middot; FACT_SALES</p>
+    <p style="margin-top:10px; color:#c0392b; font-weight:bold;">7 days to go — consistent daily practice wins!</p>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li>Schema Quick Reference</li>
+    <li>IICS — Concepts, Components &amp; Architecture</li>
+    <li>IICS — Key Transformations (with use cases)</li>
+    <li>IICS — Data Pipeline Design for this Hackathon</li>
+    <li>IICS — Interview Questions &amp; Answers</li>
+    <li>SQL — Queries on Retail Schema (Basic → Advanced)</li>
+    <li>PL/SQL — Procedures, Functions, Cursors, Exceptions</li>
+    <li>PL/SQL — Triggers on Retail Tables</li>
+    <li>PL/SQL — Package Example</li>
+    <li>PL/SQL — Interview Questions &amp; Answers</li>
+    <li>Presentation Questions &amp; Model Answers</li>
+    <li>15-Minute Interview Rapid Fire</li>
+    <li>Daily Practice Schedule (7 Days)</li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 1 — SCHEMA QUICK REFERENCE</div>
+
+<h2>1. Retail Data Schema</h2>
+<div class="schema-box">
+<strong>DIM_CUSTOMERS</strong> (CUSTOMER_ID PK, CUSTOMER_NAME, EMAIL, PHONE, CITY, STATE, COUNTRY, CREATED_DATE)
+<strong>DIM_PRODUCTS</strong>  (PRODUCT_ID PK, PRODUCT_NAME, CATEGORY, UNIT_PRICE, STOCK_QTY, SUPPLIER, CREATED_DATE)
+<strong>DIM_ORDERS</strong>    (ORDER_ID PK, CUSTOMER_ID FK, ORDER_DATE, SHIP_DATE, STATUS, PAYMENT_MODE, TOTAL_AMOUNT)
+<strong>FACT_SALES</strong>    (FACT_ID PK, ORDER_ID FK, PRODUCT_ID FK, CUSTOMER_ID FK, TRANSACTION_DATE,
+                  QUANTITY, UNIT_PRICE, DISCOUNT_PCT, REVENUE, LOAD_DATE)
+</div>
+
+<div class="note">
+<strong>Star Schema:</strong> FACT_SALES is the central fact table. DIM_CUSTOMERS, DIM_PRODUCTS, DIM_ORDERS are dimension tables.
+IICS loads source CSV files → Oracle staging → DIM/FACT target tables.
+</div>
+
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 2 — IICS</div>
+
+<h2>2. IICS — Architecture &amp; Key Concepts</h2>
+
+<h3>What is IICS?</h3>
+<p><strong>IICS (Informatica Intelligent Cloud Services)</strong> is a cloud-native data integration platform (part of <strong>IDMC — Informatica Data Management Cloud</strong>). It lets you build, run, and manage data pipelines, ETL/ELT jobs, and API integrations without managing on-premise infrastructure.</p>
+
+<table>
+<tr><th>Service / Component</th><th>Purpose</th><th>When to use</th></tr>
+<tr><td><strong>CDI</strong> (Cloud Data Integration)</td><td>ETL/ELT batch pipelines</td><td>Loading DIM/FACT tables from source files</td></tr>
+<tr><td><strong>CAI</strong> (Cloud Application Integration)</td><td>Real-time API &amp; event-driven integration</td><td>Live order events, REST APIs</td></tr>
+<tr><td><strong>Data Quality</strong></td><td>Profiling, standardization, de-duplication</td><td>Cleaning dirty transactions</td></tr>
+<tr><td><strong>Mass Ingestion</strong></td><td>Bulk parallel file/DB ingestion</td><td>Loading 500K retail records</td></tr>
+<tr><td><strong>CLAIRE AI</strong></td><td>AI-assisted mapping recommendations</td><td>Auto-map source to target fields</td></tr>
+<tr><td><strong>MDM (Cloud MDM)</strong></td><td>Master data management</td><td>Single view of Customer / Product</td></tr>
+</table>
+
+<h3>Core IICS Objects</h3>
+<table>
+<tr><th>Object</th><th>Description</th></tr>
+<tr><td><strong>Connection</strong></td><td>Stores credentials/endpoints for sources and targets (Oracle, S3, Flat File, Salesforce, etc.)</td></tr>
+<tr><td><strong>Mapping</strong></td><td>Defines data flow logic — transformations between source and target</td></tr>
+<tr><td><strong>Mapping Task</strong></td><td>Runnable instance of a mapping; associates runtime environment (Secure Agent)</td></tr>
+<tr><td><strong>Taskflow</strong></td><td>Orchestrates multiple tasks with branching, looping, email alerts</td></tr>
+<tr><td><strong>Schedule</strong></td><td>Triggers tasks/taskflows at defined times (cron or interval)</td></tr>
+<tr><td><strong>Secure Agent</strong></td><td>On-premise runtime engine that executes jobs; communicates with IICS cloud</td></tr>
+<tr><td><strong>Parameters / Parameter File</strong></td><td>Externalize source paths, target table names, filter conditions, dates</td></tr>
+<tr><td><strong>Business Service</strong></td><td>Reusable service definition (CAI)</td></tr>
+</table>
+
+<h3>IICS Architecture Flow</h3>
+<pre>
+  Developer (Browser)
+        |
+   [IICS Cloud Console / Designer]
+        |
+   ----+----------------------------------------------
+   |                                                   |
+[Metadata Repository]                    [Secure Agent Group]
+  (Mappings, Connections,                  │
+   Task definitions)                       ├── Secure Agent (on-prem / VM)
+                                           │       ├── DTM Engine
+                                           │       ├── Informatica Agent Service
+                                           │       └── executes actual data movement
+                                           │
+                                    [Source Systems] → CSV / Oracle / S3
+                                    [Target Systems] → Oracle DWH
+</pre>
+
+<h3>Secure Agent vs. Hosted Agent</h3>
+<table>
+<tr><th></th><th>Secure Agent</th><th>Hosted Agent</th></tr>
+<tr><td>Location</td><td>Customer's network / VM</td><td>Informatica-managed cloud</td></tr>
+<tr><td>Use when</td><td>On-premise sources, firewall-restricted DBs</td><td>Cloud-to-cloud (S3 → Snowflake)</td></tr>
+<tr><td>Security</td><td>Data stays in your network</td><td>Data passes through Informatica cloud</td></tr>
+</table>
+
+
+<!-- ============================================================ -->
+<h2>3. IICS — Key Transformations</h2>
+
+<table>
+<tr><th>Transformation</th><th>Purpose</th><th>Hackathon Example</th></tr>
+<tr><td><strong>Source</strong></td><td>Read data from CSV / DB</td><td>Read FACT_SALES_SOURCE.csv</td></tr>
+<tr><td><strong>Target</strong></td><td>Write to DB / file</td><td>Write to Oracle FACT_SALES table</td></tr>
+<tr><td><strong>Expression</strong></td><td>Derived columns, transformations, conditional logic</td><td>Calculate NET_REVENUE = REVENUE*(1-DISCOUNT_PCT/100)</td></tr>
+<tr><td><strong>Filter</strong></td><td>Drop rows by condition</td><td>Pass only STATUS = 'COMPLETED' orders</td></tr>
+<tr><td><strong>Lookup</strong></td><td>Look up a related value from another table</td><td>Lookup CUSTOMER_NAME from DIM_CUSTOMERS using CUSTOMER_ID</td></tr>
+<tr><td><strong>Joiner</strong></td><td>Join two heterogeneous sources (like SQL JOIN)</td><td>Join Orders with Customers</td></tr>
+<tr><td><strong>Aggregator</strong></td><td>GROUP BY aggregations (SUM, COUNT, AVG, MAX)</td><td>Total revenue per CUSTOMER_ID</td></tr>
+<tr><td><strong>Router</strong></td><td>Route rows to multiple targets based on conditions</td><td>Route COMPLETED / CANCELLED / PENDING to different targets</td></tr>
+<tr><td><strong>Sorter</strong></td><td>Sort data by column(s)</td><td>Sort FACT_SALES by TRANSACTION_DATE</td></tr>
+<tr><td><strong>Rank</strong></td><td>Top-N rows by group</td><td>Top 3 products per category by revenue</td></tr>
+<tr><td><strong>Sequence Generator</strong></td><td>Generate surrogate keys</td><td>Auto-generate FACT_ID</td></tr>
+<tr><td><strong>Union</strong></td><td>Merge multiple homogeneous streams</td><td>Combine last month + this month sales</td></tr>
+<tr><td><strong>Normalizer</strong></td><td>Flatten repeating groups / COBOL data</td><td>Denormalize quarterly product data</td></tr>
+<tr><td><strong>Data Masking</strong></td><td>Mask PII (email, phone)</td><td>Mask PHONE &amp; EMAIL in test environments</td></tr>
+</table>
+
+<h3>Lookup — Connected vs. Unconnected</h3>
+<table>
+<tr><th></th><th>Connected Lookup</th><th>Unconnected Lookup</th></tr>
+<tr><td>Called from</td><td>Main data flow pipeline</td><td>Called using :LKP expression from Expression/Filter</td></tr>
+<tr><td>Returns</td><td>Multiple columns</td><td>Only one return port</td></tr>
+<tr><td>Caching</td><td>Supports static &amp; dynamic cache</td><td>Supports static cache only</td></tr>
+<tr><td>Use case</td><td>Enrich fact row with dimension attributes</td><td>Quick single-value check (e.g., does customer exist?)</td></tr>
+</table>
+
+<h3>SCD Type 2 in IICS</h3>
+<ul>
+  <li>Used to track historical changes in dimension tables (e.g., customer address change)</li>
+  <li>New record inserted with new EFFECTIVE_DATE, old record marked INACTIVE (IS_CURRENT = 'N')</li>
+  <li>IICS has built-in <strong>SCD Transformation</strong> or can be done manually with Lookup + Router + Expression</li>
+</ul>
+
+
+<!-- ============================================================ -->
+<h2>4. IICS — Data Pipeline Design for this Hackathon</h2>
+
+<h3>Pipeline Architecture</h3>
+<pre>
+[CSV Sources (Source/)]
+ ├── customer_master.csv
+ ├── product_master.csv
+ ├── sales_transactions.csv        (clean)
+ └── sales_transactions_dirty.csv  (needs cleansing)
+         │
+         ▼
+  ┌─────────────────────────────────────────────┐
+  │           IICS Mapping Layer                │
+  │                                             │
+  │  M_LOAD_DIM_CUSTOMERS                       │
+  │   Source → Expression (derive fields)       │
+  │         → Lookup (dedup check)              │
+  │         → Target (DIM_CUSTOMERS)            │
+  │                                             │
+  │  M_LOAD_DIM_PRODUCTS                        │
+  │   Source → Expression → Target             │
+  │                                             │
+  │  M_LOAD_FACT_SALES                          │
+  │   Source → Filter (remove nulls)            │
+  │         → Expression (calc REVENUE)         │
+  │         → Lookup DIM_CUSTOMERS              │
+  │         → Lookup DIM_PRODUCTS               │
+  │         → Router (CLEAN / REJECTED)         │
+  │         → Target FACT_SALES / REJECTED_RECORDS │
+  └─────────────────────────────────────────────┘
+         │
+         ▼
+  ┌──────────────────────────┐
+  │  Oracle DWH               │
+  │  DIM_CUSTOMERS            │
+  │  DIM_PRODUCTS             │
+  │  DIM_ORDERS               │
+  │  FACT_SALES               │
+  └──────────────────────────┘
+         │
+         ▼
+  Taskflow: TF_RETAIL_PIPELINE
+   Task1: MT_LOAD_DIMS  (run DIM mappings in parallel)
+   Task2: MT_LOAD_FACT  (depends on Task1)
+   Task3: MT_SEND_EMAIL (success/failure notification)
+</pre>
+
+<div class="tip"><strong>Tip:</strong> Always load DIMENSION tables before FACT tables to avoid foreign key lookup failures. In the Taskflow, use a <code>Wait</code> or <code>Sequence</code> to enforce order.</div>
+
+<h3>Parameter File Example</h3>
+<pre>
+# retail_pipeline.param
+[Global]
+$$SOURCE_DIR      = /data/source/
+$$TARGET_SCHEMA   = RETAIL_DWH
+$$LOAD_DATE       = 2026-03-16
+$$BATCH_SIZE      = 10000
+$$ERROR_THRESHOLD = 100
+</pre>
+
+
+<!-- ============================================================ -->
+<h2>5. IICS — Interview Questions &amp; Answers</h2>
+
+<div class="qa"><strong>Q1: What is the difference between a Mapping and a Mapping Task in IICS?</strong></div>
+<div class="answer">A <strong>Mapping</strong> defines the data flow logic (transformations, source, target). A <strong>Mapping Task</strong> is the runnable instance of that mapping — it binds the mapping to a Secure Agent, runtime environment, and specific connections. You can have one mapping with multiple mapping tasks pointing to different environments (Dev/QA/Prod).</div>
+
+<div class="qa"><strong>Q2: What is a Secure Agent and why is it needed?</strong></div>
+<div class="answer">A Secure Agent is a lightweight software installed on-premises or on a VM in your network. It executes the actual data movement between local sources (Oracle DB, flat files) and the IICS cloud. It establishes an outbound-only HTTPS connection to IICS — no inbound ports are opened, so firewall rules are minimal. It ensures data never leaves your network unencrypted.</div>
+
+<div class="qa"><strong>Q3: What are the types of Lookup transformations?</strong></div>
+<div class="answer">
+  <strong>Connected Lookup:</strong> Part of the main data flow; passes data through it; can return multiple columns; supports dynamic cache (updates during run).<br>
+  <strong>Unconnected Lookup:</strong> Called with :LKP.lookup_name() expression; returns a single value; supports static cache only; useful for conditional value lookup without disrupting the main pipeline.
+</div>
+
+<div class="qa"><strong>Q4: How do you handle rejected/bad records in IICS?</strong></div>
+<div class="answer">Use a <strong>Router</strong> transformation to split data: one group passes valid records to the target, another group routes invalid records (nulls, invalid IDs, out-of-range values) to a REJECTED_RECORDS flat file or error table. Also configure the <strong>Error Log</strong> at the Mapping Task level for row-level errors. You can set a Stop-on-Error threshold.</div>
+
+<div class="qa"><strong>Q5: What is the difference between CDI and CAI?</strong></div>
+<div class="answer"><strong>CDI (Cloud Data Integration)</strong> = batch ETL/ELT — schedule-driven bulk data movement (e.g., nightly loads). <strong>CAI (Cloud Application Integration)</strong> = real-time event-driven API integration — REST/SOAP, message queues, process automation triggered by events in milliseconds. Use CDI for warehouse loads; use CAI for live order APIs.</div>
+
+<div class="qa"><strong>Q6: What is SCD Type 2 and how do you implement it?</strong></div>
+<div class="answer">SCD Type 2 (Slowly Changing Dimension Type 2) preserves full history by inserting a new row when an attribute changes, marking the old row as expired. In IICS, use: <strong>Source → Lookup</strong> (check if record exists and if changed) → <strong>Router</strong> (New / Changed / Unchanged) → <strong>Expression</strong> (set EFFECTIVE_DATE, END_DATE, IS_CURRENT) → <strong>Target</strong> (insert new row + update old row).</div>
+
+<div class="qa"><strong>Q7: How do you pass dynamic values (like today's date) to a mapping?</strong></div>
+<div class="answer">Use <strong>Parameters</strong> ($$PARAM_NAME) defined at the Mapping Task or Taskflow level. You can pass a parameter file where $$LOAD_DATE = SYSDATE or a specific date string. Inside the mapping, reference the parameter in Expression transformations: <code>TO_DATE($$LOAD_DATE, 'YYYY-MM-DD')</code>.</div>
+
+<div class="qa"><strong>Q8: What is a Taskflow?</strong></div>
+<div class="answer">A Taskflow is an orchestration object that sequences and branches multiple Mapping Tasks with control flow logic (sequence, condition, parallel execution, loop, email notification, sub-taskflow). It is IICS's equivalent of a workflow. Example: Load dimensions → wait → load facts → send email on completion.</div>
+
+<div class="qa"><strong>Q9: How do you run mappings in parallel in IICS?</strong></div>
+<div class="answer">In a Taskflow, connect tasks from a <strong>Start</strong> event to multiple tasks simultaneously (fan-out). They will execute in parallel. After all complete, use a <strong>Synchronization (AND) gate</strong> to merge back before the next sequential task.</div>
+
+<div class="qa"><strong>Q10: What is pushdown optimization / ELT in IICS?</strong></div>
+<div class="answer">Pushdown Optimization (PDO) pushes transformation logic down into the database engine (Oracle, Snowflake) as native SQL, so data is not moved to the Secure Agent for processing. This reduces network I/O and leverages the database engine's power. Full pushdown generates a SQL query and executes it on the database; partial pushdown handles unsupported transformations on the agent.</div>
+
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 3 — SQL QUERIES ON RETAIL SCHEMA</div>
+
+<h2>6. SQL Queries — Basic to Advanced</h2>
+
+<div class="note"><strong>Schema reminder:</strong> DIM_CUSTOMERS (CUSTOMER_ID, CUSTOMER_NAME, CITY, STATE), DIM_PRODUCTS (PRODUCT_ID, PRODUCT_NAME, CATEGORY, UNIT_PRICE, STOCK_QTY), DIM_ORDERS (ORDER_ID, CUSTOMER_ID, ORDER_DATE, STATUS, PAYMENT_MODE, TOTAL_AMOUNT), FACT_SALES (FACT_ID, ORDER_ID, PRODUCT_ID, CUSTOMER_ID, TRANSACTION_DATE, QUANTITY, UNIT_PRICE, DISCOUNT_PCT, REVENUE)</div>
+
+<h3>Basic Queries</h3>
+<pre>
+-- 1. All completed orders
+SELECT ORDER_ID, CUSTOMER_ID, TOTAL_AMOUNT
+FROM   DIM_ORDERS
+WHERE  STATUS = 'COMPLETED'
+ORDER BY TOTAL_AMOUNT DESC;
+
+-- 2. Products with price above category average
+SELECT PRODUCT_NAME, CATEGORY, UNIT_PRICE
+FROM   DIM_PRODUCTS
+WHERE  UNIT_PRICE > (SELECT AVG(UNIT_PRICE) FROM DIM_PRODUCTS)
+ORDER BY CATEGORY, UNIT_PRICE DESC;
+
+-- 3. Count customers per city
+SELECT CITY, STATE, COUNT(*) AS CUSTOMER_COUNT
+FROM   DIM_CUSTOMERS
+GROUP  BY CITY, STATE
+ORDER  BY CUSTOMER_COUNT DESC;
+
+-- 4. Total revenue per product
+SELECT P.PRODUCT_NAME, P.CATEGORY,
+       SUM(F.REVENUE)   AS TOTAL_REVENUE,
+       SUM(F.QUANTITY)  AS TOTAL_QTY_SOLD
+FROM   FACT_SALES F
+JOIN   DIM_PRODUCTS P ON F.PRODUCT_ID = P.PRODUCT_ID
+GROUP  BY P.PRODUCT_NAME, P.CATEGORY
+ORDER  BY TOTAL_REVENUE DESC;
+</pre>
+
+<h3>JOIN Queries</h3>
+<pre>
+-- 5. Full customer purchase summary
+SELECT C.CUSTOMER_NAME, C.CITY, C.STATE,
+       COUNT(DISTINCT F.ORDER_ID)  AS TOTAL_ORDERS,
+       SUM(F.REVENUE)              AS TOTAL_REVENUE,
+       AVG(F.DISCOUNT_PCT)         AS AVG_DISCOUNT
+FROM   FACT_SALES F
+JOIN   DIM_CUSTOMERS C ON F.CUSTOMER_ID = C.CUSTOMER_ID
+GROUP  BY C.CUSTOMER_NAME, C.CITY, C.STATE
+ORDER  BY TOTAL_REVENUE DESC;
+
+-- 6. Order details with customer and product info
+SELECT O.ORDER_ID, C.CUSTOMER_NAME, P.PRODUCT_NAME,
+       P.CATEGORY, F.QUANTITY, F.UNIT_PRICE,
+       F.DISCOUNT_PCT, F.REVENUE, O.STATUS, O.PAYMENT_MODE
+FROM   FACT_SALES F
+JOIN   DIM_CUSTOMERS C ON F.CUSTOMER_ID = C.CUSTOMER_ID
+JOIN   DIM_PRODUCTS  P ON F.PRODUCT_ID  = P.PRODUCT_ID
+JOIN   DIM_ORDERS    O ON F.ORDER_ID    = O.ORDER_ID
+ORDER  BY F.TRANSACTION_DATE DESC;
+
+-- 7. Customers who never placed a COMPLETED order (LEFT JOIN anti-join)
+SELECT C.CUSTOMER_ID, C.CUSTOMER_NAME
+FROM   DIM_CUSTOMERS C
+LEFT   JOIN DIM_ORDERS O ON C.CUSTOMER_ID = O.CUSTOMER_ID
+                        AND O.STATUS = 'COMPLETED'
+WHERE  O.ORDER_ID IS NULL;
+</pre>
+
+<h3>Aggregation &amp; GROUP BY / HAVING</h3>
+<pre>
+-- 8. Categories with total revenue > 100000
+SELECT P.CATEGORY,
+       COUNT(F.FACT_ID)   AS TRANSACTIONS,
+       SUM(F.REVENUE)     AS TOTAL_REVENUE,
+       ROUND(AVG(F.REVENUE), 2) AS AVG_REVENUE
+FROM   FACT_SALES F
+JOIN   DIM_PRODUCTS P ON F.PRODUCT_ID = P.PRODUCT_ID
+GROUP  BY P.CATEGORY
+HAVING SUM(F.REVENUE) > 100000
+ORDER  BY TOTAL_REVENUE DESC;
+
+-- 9. Monthly revenue trend
+SELECT TO_CHAR(TRANSACTION_DATE, 'YYYY-MM') AS MONTH,
+       COUNT(*)               AS TRANSACTIONS,
+       SUM(REVENUE)           AS MONTHLY_REVENUE
+FROM   FACT_SALES
+GROUP  BY TO_CHAR(TRANSACTION_DATE, 'YYYY-MM')
+ORDER  BY MONTH;
+
+-- 10. Revenue with ROLLUP (subtotals per category + grand total)
+SELECT P.CATEGORY, P.PRODUCT_NAME, SUM(F.REVENUE) AS TOTAL_REV
+FROM   FACT_SALES F
+JOIN   DIM_PRODUCTS P ON F.PRODUCT_ID = P.PRODUCT_ID
+GROUP  BY ROLLUP(P.CATEGORY, P.PRODUCT_NAME)
+ORDER  BY P.CATEGORY NULLS LAST, P.PRODUCT_NAME NULLS LAST;
+</pre>
+
+<h3>Subqueries &amp; Correlated Subqueries</h3>
+<pre>
+-- 11. Top-spending customer per city
+SELECT CITY, CUSTOMER_NAME, TOTAL_REV
+FROM (
+  SELECT C.CITY, C.CUSTOMER_NAME,
+         SUM(F.REVENUE) AS TOTAL_REV,
+         RANK() OVER (PARTITION BY C.CITY ORDER BY SUM(F.REVENUE) DESC) AS RNK
+  FROM   FACT_SALES F
+  JOIN   DIM_CUSTOMERS C ON F.CUSTOMER_ID = C.CUSTOMER_ID
+  GROUP  BY C.CITY, C.CUSTOMER_NAME
+)
+WHERE RNK = 1;
+
+-- 12. Products not sold in the last 90 days (correlated subquery)
+SELECT PRODUCT_ID, PRODUCT_NAME, CATEGORY
+FROM   DIM_PRODUCTS P
+WHERE  NOT EXISTS (
+  SELECT 1 FROM FACT_SALES F
+  WHERE  F.PRODUCT_ID = P.PRODUCT_ID
+  AND    F.TRANSACTION_DATE >= SYSDATE - 90
+);
+</pre>
+
+<h3>Analytic / Window Functions</h3>
+<pre>
+-- 13. Running total of revenue ordered by date
+SELECT TRANSACTION_DATE, REVENUE,
+       SUM(REVENUE) OVER (ORDER BY TRANSACTION_DATE
+                          ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RUNNING_TOTAL
+FROM   FACT_SALES
+ORDER  BY TRANSACTION_DATE;
+
+-- 14. Rank products by revenue within each category
+SELECT P.CATEGORY, P.PRODUCT_NAME,
+       SUM(F.REVENUE) AS TOTAL_REV,
+       RANK()     OVER (PARTITION BY P.CATEGORY ORDER BY SUM(F.REVENUE) DESC) AS RANK_IN_CAT,
+       DENSE_RANK() OVER (PARTITION BY P.CATEGORY ORDER BY SUM(F.REVENUE) DESC) AS DENSE_RANK_IN_CAT
+FROM   FACT_SALES F
+JOIN   DIM_PRODUCTS P ON F.PRODUCT_ID = P.PRODUCT_ID
+GROUP  BY P.CATEGORY, P.PRODUCT_NAME;
+
+-- 15. Compare each sale revenue vs. previous sale (LAG)
+SELECT FACT_ID, TRANSACTION_DATE, REVENUE,
+       LAG(REVENUE, 1, 0) OVER (ORDER BY TRANSACTION_DATE) AS PREV_REVENUE,
+       REVENUE - LAG(REVENUE, 1, 0) OVER (ORDER BY TRANSACTION_DATE) AS REVENUE_DIFF
+FROM   FACT_SALES
+ORDER  BY TRANSACTION_DATE;
+
+-- 16. Percentage of total revenue per product
+SELECT P.PRODUCT_NAME,
+       SUM(F.REVENUE) AS PROD_REVENUE,
+       ROUND(SUM(F.REVENUE) / SUM(SUM(F.REVENUE)) OVER () * 100, 2) AS PCT_OF_TOTAL
+FROM   FACT_SALES F
+JOIN   DIM_PRODUCTS P ON F.PRODUCT_ID = P.PRODUCT_ID
+GROUP  BY P.PRODUCT_NAME
+ORDER  BY PROD_REVENUE DESC;
+
+-- 17. ROW_NUMBER to deduplicate (keep latest per customer per product)
+SELECT * FROM (
+  SELECT F.*,
+         ROW_NUMBER() OVER (PARTITION BY CUSTOMER_ID, PRODUCT_ID
+                            ORDER BY TRANSACTION_DATE DESC) AS RN
+  FROM FACT_SALES F
+)
+WHERE RN = 1;
+</pre>
+
+<h3>Advanced — MERGE (Upsert)</h3>
+<pre>
+-- 18. MERGE upsert into DIM_CUSTOMERS from staging
+MERGE INTO DIM_CUSTOMERS tgt
+USING STAGING_CUSTOMERS src
+ON (tgt.CUSTOMER_ID = src.CUSTOMER_ID)
+WHEN MATCHED THEN
+  UPDATE SET tgt.CUSTOMER_NAME = src.CUSTOMER_NAME,
+             tgt.EMAIL         = src.EMAIL,
+             tgt.PHONE         = src.PHONE,
+             tgt.CITY          = src.CITY
+WHEN NOT MATCHED THEN
+  INSERT (CUSTOMER_ID, CUSTOMER_NAME, EMAIL, PHONE, CITY, STATE, COUNTRY, CREATED_DATE)
+  VALUES (src.CUSTOMER_ID, src.CUSTOMER_NAME, src.EMAIL, src.PHONE,
+          src.CITY, src.STATE, src.COUNTRY, SYSDATE);
+</pre>
+
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 4 — PL/SQL</div>
+
+<h2>7. PL/SQL — Procedures, Functions, Cursors, Exceptions</h2>
+
+<h3>7.1 Stored Procedure — Load FACT_SALES</h3>
+<pre>
+CREATE OR REPLACE PROCEDURE p_load_fact_sales (
+    p_load_date   IN DATE     DEFAULT SYSDATE,
+    p_rows_loaded OUT NUMBER
+) AS
+    v_count  NUMBER := 0;
+    v_err_msg VARCHAR2(500);
+BEGIN
+    -- Insert from staging to FACT_SALES
+    INSERT INTO FACT_SALES (
+        FACT_ID, ORDER_ID, PRODUCT_ID, CUSTOMER_ID,
+        TRANSACTION_DATE, QUANTITY, UNIT_PRICE, DISCOUNT_PCT, REVENUE, LOAD_DATE
+    )
+    SELECT
+        'F' || LPAD(FACT_SEQ.NEXTVAL, 4, '0'),
+        s.ORDER_ID, s.PRODUCT_ID, s.CUSTOMER_ID,
+        TO_DATE(s.TRANSACTION_DATE, 'YYYY-MM-DD'),
+        s.QUANTITY, s.UNIT_PRICE, s.DISCOUNT_PCT,
+        ROUND(s.QUANTITY * s.UNIT_PRICE * (1 - s.DISCOUNT_PCT / 100), 2),
+        p_load_date
+    FROM STG_FACT_SALES s
+    WHERE NOT EXISTS (
+        SELECT 1 FROM FACT_SALES f WHERE f.FACT_ID = s.FACT_ID
+    );
+
+    v_count := SQL%ROWCOUNT;
+    COMMIT;
+    p_rows_loaded := v_count;
+    DBMS_OUTPUT.PUT_LINE('Loaded: ' || v_count || ' rows.');
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        v_err_msg := SQLERRM;
+        INSERT INTO ETL_ERROR_LOG (PROC_NAME, ERROR_MSG, ERROR_DATE)
+        VALUES ('p_load_fact_sales', v_err_msg, SYSDATE);
+        COMMIT;
+        RAISE;
+END p_load_fact_sales;
+/
+</pre>
+
+<h3>7.2 Function — Calculate Net Revenue</h3>
+<pre>
+CREATE OR REPLACE FUNCTION f_net_revenue (
+    p_quantity      IN NUMBER,
+    p_unit_price    IN NUMBER,
+    p_discount_pct  IN NUMBER
+) RETURN NUMBER IS
+    v_net_rev NUMBER;
+BEGIN
+    IF p_quantity IS NULL OR p_unit_price IS NULL THEN
+        RETURN 0;
+    END IF;
+    v_net_rev := p_quantity * p_unit_price
+                 * (1 - NVL(p_discount_pct, 0) / 100);
+    RETURN ROUND(v_net_rev, 2);
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        RETURN 0;
+    WHEN OTHERS THEN
+        RETURN NULL;
+END f_net_revenue;
+/
+
+-- Usage:
+SELECT ORDER_ID, f_net_revenue(QUANTITY, UNIT_PRICE, DISCOUNT_PCT) AS NET_REV
+FROM   FACT_SALES;
+</pre>
+
+<h3>7.3 Explicit Cursor — Report Top Customers</h3>
+<pre>
+DECLARE
+    CURSOR c_top_customers IS
+        SELECT C.CUSTOMER_NAME, C.CITY,
+               SUM(F.REVENUE) AS TOTAL_REV,
+               COUNT(DISTINCT F.ORDER_ID) AS ORDER_COUNT
+        FROM   FACT_SALES F
+        JOIN   DIM_CUSTOMERS C ON F.CUSTOMER_ID = C.CUSTOMER_ID
+        GROUP  BY C.CUSTOMER_NAME, C.CITY
+        HAVING SUM(F.REVENUE) >
+               (SELECT AVG(rev_sum) FROM
+                  (SELECT SUM(REVENUE) AS rev_sum FROM FACT_SALES
+                   GROUP BY CUSTOMER_ID))
+        ORDER  BY TOTAL_REV DESC;
+
+    r_cust c_top_customers%ROWTYPE;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(RPAD('Customer', 20) || RPAD('City', 15)
+                         || LPAD('Revenue', 12) || LPAD('Orders', 8));
+    DBMS_OUTPUT.PUT_LINE(RPAD('-', 55, '-'));
+
+    OPEN c_top_customers;
+    LOOP
+        FETCH c_top_customers INTO r_cust;
+        EXIT WHEN c_top_customers%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(
+            RPAD(r_cust.CUSTOMER_NAME, 20) ||
+            RPAD(r_cust.CITY, 15) ||
+            LPAD(TO_CHAR(r_cust.TOTAL_REV, '999,999.99'), 12) ||
+            LPAD(r_cust.ORDER_COUNT, 8)
+        );
+    END LOOP;
+    CLOSE c_top_customers;
+    DBMS_OUTPUT.PUT_LINE('Total rows: ' || c_top_customers%ROWCOUNT);
+END;
+/
+</pre>
+
+<h3>7.4 Cursor FOR Loop (simpler syntax)</h3>
+<pre>
+BEGIN
+    FOR rec IN (
+        SELECT P.CATEGORY, SUM(F.REVENUE) AS CAT_REV
+        FROM   FACT_SALES F
+        JOIN   DIM_PRODUCTS P ON F.PRODUCT_ID = P.PRODUCT_ID
+        GROUP  BY P.CATEGORY
+        ORDER  BY CAT_REV DESC
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE(rec.CATEGORY || ' : ' || rec.CAT_REV);
+    END LOOP;
+END;
+/
+</pre>
+
+<h3>7.5 Exception Handling — Named + User-Defined</h3>
+<pre>
+DECLARE
+    v_total_rev  NUMBER;
+    v_cust_id    DIM_CUSTOMERS.CUSTOMER_ID%TYPE := '&CUSTOMER_ID';
+
+    -- User-defined exception
+    e_customer_not_found EXCEPTION;
+    PRAGMA EXCEPTION_INIT(e_customer_not_found, -20001);
+
+BEGIN
+    -- Check if customer exists
+    SELECT COUNT(*) INTO v_total_rev
+    FROM   DIM_CUSTOMERS
+    WHERE  CUSTOMER_ID = v_cust_id;
+
+    IF v_total_rev = 0 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Customer not found: ' || v_cust_id);
+    END IF;
+
+    -- Get total revenue
+    SELECT SUM(REVENUE) INTO v_total_rev
+    FROM   FACT_SALES
+    WHERE  CUSTOMER_ID = v_cust_id;
+
+    IF v_total_rev IS NULL THEN
+        DBMS_OUTPUT.PUT_LINE('Customer has no sales.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Total Revenue: ' || v_total_rev);
+    END IF;
+
+EXCEPTION
+    WHEN e_customer_not_found THEN
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No data found for this customer.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || SQLCODE || ' - ' || SQLERRM);
+        ROLLBACK;
+END;
+/
+</pre>
+
+<h3>7.6 Bulk Collect + FORALL (Performance)</h3>
+<pre>
+DECLARE
+    TYPE t_fact_tab  IS TABLE OF FACT_SALES%ROWTYPE;
+    v_facts          t_fact_tab;
+    c_limit          CONSTANT PLS_INTEGER := 1000;
+
+    CURSOR c_stg IS
+        SELECT * FROM STG_FACT_SALES;
+BEGIN
+    OPEN c_stg;
+    LOOP
+        -- Bulk fetch 1000 rows at a time
+        FETCH c_stg BULK COLLECT INTO v_facts LIMIT c_limit;
+        EXIT WHEN v_facts.COUNT = 0;
+
+        -- Bulk insert
+        FORALL i IN 1 .. v_facts.COUNT
+            INSERT INTO FACT_SALES VALUES v_facts(i);
+
+        COMMIT;
+    END LOOP;
+    CLOSE c_stg;
+    DBMS_OUTPUT.PUT_LINE('Bulk load complete.');
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END;
+/
+</pre>
+
+<div class="tip"><strong>Performance tip:</strong> BULK COLLECT + FORALL reduces context switches between PL/SQL and SQL engine — typically 10–100x faster than row-by-row processing.</div>
+
+
+<!-- ============================================================ -->
+<h2>8. PL/SQL — Triggers on Retail Tables</h2>
+
+<h3>8.1 BEFORE INSERT Trigger — Auto-generate FACT_ID</h3>
+<pre>
+CREATE OR REPLACE TRIGGER trg_fact_sales_bi
+BEFORE INSERT ON FACT_SALES
+FOR EACH ROW
+BEGIN
+    IF :NEW.FACT_ID IS NULL THEN
+        :NEW.FACT_ID := 'F' || LPAD(FACT_SEQ.NEXTVAL, 4, '0');
+    END IF;
+    :NEW.LOAD_DATE := SYSDATE;
+END;
+/
+</pre>
+
+<h3>8.2 AFTER UPDATE Trigger — Audit Trail</h3>
+<pre>
+CREATE TABLE FACT_SALES_AUDIT (
+    AUDIT_ID     NUMBER GENERATED ALWAYS AS IDENTITY,
+    FACT_ID      VARCHAR2(10),
+    OLD_REVENUE  NUMBER,
+    NEW_REVENUE  NUMBER,
+    CHANGED_BY   VARCHAR2(50),
+    CHANGED_ON   DATE
+);
+
+CREATE OR REPLACE TRIGGER trg_fact_sales_au
+AFTER UPDATE OF REVENUE ON FACT_SALES
+FOR EACH ROW
+WHEN (OLD.REVENUE != NEW.REVENUE)
+BEGIN
+    INSERT INTO FACT_SALES_AUDIT
+        (FACT_ID, OLD_REVENUE, NEW_REVENUE, CHANGED_BY, CHANGED_ON)
+    VALUES
+        (:OLD.FACT_ID, :OLD.REVENUE, :NEW.REVENUE, USER, SYSDATE);
+END;
+/
+</pre>
+
+<h3>8.3 INSTEAD OF Trigger — Updatable View</h3>
+<pre>
+-- Complex view (not updatable directly)
+CREATE OR REPLACE VIEW v_sales_detail AS
+    SELECT F.FACT_ID, C.CUSTOMER_NAME, P.PRODUCT_NAME,
+           F.QUANTITY, F.REVENUE
+    FROM   FACT_SALES F
+    JOIN   DIM_CUSTOMERS C ON F.CUSTOMER_ID = C.CUSTOMER_ID
+    JOIN   DIM_PRODUCTS  P ON F.PRODUCT_ID  = P.PRODUCT_ID;
+
+-- Make it updatable via INSTEAD OF trigger
+CREATE OR REPLACE TRIGGER trg_v_sales_detail_iu
+INSTEAD OF UPDATE ON v_sales_detail
+FOR EACH ROW
+BEGIN
+    UPDATE FACT_SALES
+    SET    QUANTITY = :NEW.QUANTITY,
+           REVENUE  = :NEW.REVENUE
+    WHERE  FACT_ID  = :OLD.FACT_ID;
+END;
+/
+</pre>
+
+<h3>8.4 AFTER DELETE Trigger — Prevent Deletion of COMPLETED Orders</h3>
+<pre>
+CREATE OR REPLACE TRIGGER trg_orders_ad
+BEFORE DELETE ON DIM_ORDERS
+FOR EACH ROW
+BEGIN
+    IF :OLD.STATUS = 'COMPLETED' THEN
+        RAISE_APPLICATION_ERROR(-20010,
+            'Cannot delete a COMPLETED order: ' || :OLD.ORDER_ID);
+    END IF;
+END;
+/
+</pre>
+
+
+<!-- ============================================================ -->
+<h2>9. PL/SQL — Package Example</h2>
+
+<pre>
+-- ============= PACKAGE SPECIFICATION =============
+CREATE OR REPLACE PACKAGE pkg_retail_etl AS
+
+    -- Public constants
+    c_max_discount  CONSTANT NUMBER := 30;
+
+    -- Public types
+    TYPE t_revenue_tab IS TABLE OF NUMBER INDEX BY PLS_INTEGER;
+
+    -- Public procedures / functions
+    PROCEDURE p_load_customers (p_rows OUT NUMBER);
+    PROCEDURE p_load_products  (p_rows OUT NUMBER);
+    PROCEDURE p_load_fact_sales(p_load_date IN DATE, p_rows OUT NUMBER);
+    FUNCTION  f_customer_revenue(p_cust_id IN VARCHAR2) RETURN NUMBER;
+    PROCEDURE p_run_full_pipeline;
+
+END pkg_retail_etl;
+/
+
+-- ============= PACKAGE BODY =============
+CREATE OR REPLACE PACKAGE BODY pkg_retail_etl AS
+
+    -- Private helper
+    PROCEDURE log_message(p_msg IN VARCHAR2) IS
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('[' || TO_CHAR(SYSDATE,'HH24:MI:SS') || '] ' || p_msg);
+    END;
+
+    PROCEDURE p_load_customers(p_rows OUT NUMBER) IS
+    BEGIN
+        MERGE INTO DIM_CUSTOMERS tgt
+        USING STG_CUSTOMERS src ON (tgt.CUSTOMER_ID = src.CUSTOMER_ID)
+        WHEN MATCHED THEN
+            UPDATE SET tgt.CUSTOMER_NAME = src.CUSTOMER_NAME,
+                       tgt.EMAIL = src.EMAIL
+        WHEN NOT MATCHED THEN
+            INSERT VALUES (src.CUSTOMER_ID, src.CUSTOMER_NAME, src.EMAIL,
+                           src.PHONE, src.CITY, src.STATE, src.COUNTRY, SYSDATE);
+        p_rows := SQL%ROWCOUNT;
+        COMMIT;
+        log_message('Customers loaded: ' || p_rows);
+    END;
+
+    FUNCTION f_customer_revenue(p_cust_id IN VARCHAR2) RETURN NUMBER IS
+        v_rev NUMBER;
+    BEGIN
+        SELECT NVL(SUM(REVENUE), 0) INTO v_rev
+        FROM   FACT_SALES
+        WHERE  CUSTOMER_ID = p_cust_id;
+        RETURN v_rev;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN RETURN 0;
+    END;
+
+    PROCEDURE p_run_full_pipeline IS
+        v_r NUMBER;
+    BEGIN
+        log_message('Pipeline start');
+        p_load_customers(v_r);
+        p_load_products(v_r);
+        p_load_fact_sales(SYSDATE, v_r);
+        log_message('Pipeline complete');
+    EXCEPTION
+        WHEN OTHERS THEN
+            log_message('Pipeline FAILED: ' || SQLERRM);
+            RAISE;
+    END;
+
+END pkg_retail_etl;
+/
+
+-- Execute:
+EXEC pkg_retail_etl.p_run_full_pipeline;
+</pre>
+
+
+<!-- ============================================================ -->
+<h2>10. PL/SQL — Interview Questions &amp; Answers</h2>
+
+<div class="qa"><strong>Q1: What is the difference between a Procedure and a Function?</strong></div>
+<div class="answer">A <strong>Function</strong> must return a value; a <strong>Procedure</strong> may use OUT/IN OUT parameters but does not use RETURN to send back a value. Functions can be used in SQL expressions (SELECT, WHERE); procedures cannot. Both can have IN/OUT parameters.</div>
+
+<div class="qa"><strong>Q2: What is %TYPE and %ROWTYPE?</strong></div>
+<div class="answer"><code>%TYPE</code> inherits the datatype of a single column: <code>v_name DIM_CUSTOMERS.CUSTOMER_NAME%TYPE</code>. <code>%ROWTYPE</code> inherits the structure of an entire row: <code>v_cust DIM_CUSTOMERS%ROWTYPE</code>. Both ensure variables stay in sync if the table definition changes — no manual datatype maintenance.</div>
+
+<div class="qa"><strong>Q3: Implicit vs Explicit Cursor — when to use which?</strong></div>
+<div class="answer"><strong>Implicit cursor</strong> is automatically created for every DML statement and single-row SELECT INTO. Use it for simple one-row queries. <strong>Explicit cursor</strong> must be declared, opened, fetched, and closed. Use it for multi-row result sets where you need row-by-row processing or fine-grained control. Cursor FOR loops are a clean shorthand for explicit cursors.</div>
+
+<div class="qa"><strong>Q4: What is BULK COLLECT and FORALL? Why use them?</strong></div>
+<div class="answer">Normal cursor loops cause a context switch between PL/SQL and SQL engine for every row — O(n) context switches. <strong>BULK COLLECT</strong> fetches multiple rows into a collection in one SQL call. <strong>FORALL</strong> sends all DML statements to the SQL engine in one batch. Together they dramatically reduce context switches — 10–100x performance improvement for large datasets.</div>
+
+<div class="qa"><strong>Q5: What is PRAGMA EXCEPTION_INIT?</strong></div>
+<div class="answer">It associates a named PL/SQL exception with an Oracle error number: <code>PRAGMA EXCEPTION_INIT(e_fk_violation, -2291);</code>. This lets you catch specific Oracle errors by a meaningful name instead of using WHEN OTHERS and checking SQLCODE.</div>
+
+<div class="qa"><strong>Q6: Difference between COMMIT, ROLLBACK, SAVEPOINT?</strong></div>
+<div class="answer"><strong>COMMIT</strong> permanently saves all changes since the last commit. <strong>ROLLBACK</strong> undoes all changes since the last commit. <strong>SAVEPOINT sp1</strong> marks a point; <code>ROLLBACK TO sp1</code> undoes only changes after that savepoint, preserving earlier changes. DDL (CREATE, ALTER) auto-commits in Oracle.</div>
+
+<div class="qa"><strong>Q7: What is an INSTEAD OF trigger?</strong></div>
+<div class="answer">A trigger fired instead of the DML on a view. Since complex views (multi-table joins, GROUP BY, DISTINCT) are not directly updatable, an INSTEAD OF trigger intercepts the DML and translates it into DML on the underlying base tables.</div>
+
+<div class="qa"><strong>Q8: What is the difference between DELETE and TRUNCATE?</strong></div>
+<div class="answer"><strong>DELETE</strong> is DML — can be rolled back, fires triggers, logs every row deletion, can use WHERE clause. <strong>TRUNCATE</strong> is DDL — auto-commits, cannot be rolled back (in most cases), does NOT fire row-level triggers, much faster on large tables, resets HWM (High Water Mark).</div>
+
+<div class="qa"><strong>Q9: What are Oracle Supplied Packages you use regularly?</strong></div>
+<div class="answer">
+  <strong>DBMS_OUTPUT</strong> — debug print to console.<br>
+  <strong>DBMS_JOB / DBMS_SCHEDULER</strong> — schedule PL/SQL jobs.<br>
+  <strong>UTL_FILE</strong> — read/write OS files from PL/SQL.<br>
+  <strong>DBMS_METADATA</strong> — extract DDL of objects.<br>
+  <strong>DBMS_STATS</strong> — gather optimizer statistics.<br>
+  <strong>UTL_HTTP / UTL_SMTP</strong> — HTTP calls, send email from Oracle.
+</div>
+
+<div class="qa"><strong>Q10: How do you handle exceptions in a package?</strong></div>
+<div class="answer">Each procedure/function in the package body has its own EXCEPTION block. Errors can be logged to an error table, re-raised using RAISE, or converted using RAISE_APPLICATION_ERROR. Package-level variables can hold error state for the session. Always ensure COMMIT/ROLLBACK are called correctly before raising.</div>
+
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 5 — PRESENTATION Q&amp;A</div>
+
+<h2>11. Presentation Questions &amp; Model Answers</h2>
+
+<div class="qa"><strong>Q: Walk us through your data pipeline architecture.</strong></div>
+<div class="answer">
+"We have a retail data warehouse pipeline. Source data — customers, products, orders, and sales transactions — arrives as flat CSV files. These are ingested into Oracle staging tables using IICS CDI mappings. We then apply transformations: data cleansing (null checks, duplicate removal, format standardization), and lookups to enrich the fact data with dimension keys. The clean data flows into a Star Schema — one FACT_SALES table and three dimension tables. The entire pipeline is orchestrated by an IICS Taskflow that loads dimensions first (in parallel) and then loads the fact table, with error routing to a rejected-records file and email alerts on completion or failure."
+</div>
+
+<div class="qa"><strong>Q: Why did you choose a Star Schema instead of a normalized model?</strong></div>
+<div class="answer">
+"Star schema is optimized for analytical queries — fast aggregations, fewer JOINs, easy for BI tools to query. A fully normalized model is better for OLTP (transactions), but in our warehouse use case, we need fast reads for reporting. The denormalization trade-off (some redundancy) is acceptable for the performance gains."
+</div>
+
+<div class="qa"><strong>Q: How do you handle dirty / bad data?</strong></div>
+<div class="answer">
+"In IICS, we have a Filter transformation that checks for null CUSTOMER_ID, null PRODUCT_ID, zero or negative quantities, and invalid dates. Records failing these checks are routed by the Router transformation to a REJECTED_RECORDS target file, while clean records proceed to FACT_SALES. We track rejection count per batch and alert if it exceeds a configured threshold."
+</div>
+
+<div class="qa"><strong>Q: What is the difference between your current pipeline and SCD Type 2?</strong></div>
+<div class="answer">
+"Our current pipeline does a simple MERGE upsert — if a customer record changes, we overwrite it (SCD Type 1 — no history). SCD Type 2 would insert a new row for every change, preserving history with EFFECTIVE_DATE and END_DATE columns. We would use SCD Type 2 if the business needed to report on what a customer's address was at the time of a historical order, for example."
+</div>
+
+<div class="qa"><strong>Q: How would you scale this pipeline for 10 million records/day?</strong></div>
+<div class="answer">
+"We would use IICS Mass Ingestion for parallel file loading, enable Pushdown Optimization so transformations run inside Oracle, use Bulk Collect + FORALL in PL/SQL for post-load processing, partition the FACT_SALES table by TRANSACTION_DATE (range partitioning), add bitmap indexes on dimension foreign keys, and scale horizontally by adding more Secure Agent nodes for parallel partition processing."
+</div>
+
+<div class="qa"><strong>Q: What monitoring do you have for the pipeline?</strong></div>
+<div class="answer">
+"In IICS, every job execution is visible in the Monitor tab — status (success/running/failed), rows processed, rows rejected, and detailed session logs. We also maintain an ETL_ERROR_LOG table inside Oracle for procedure-level errors. The Taskflow sends email notifications on success or failure. For production, we'd integrate with an alerting tool (PagerDuty, ServiceNow)."
+</div>
+
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 6 — 15-MINUTE INTERVIEW RAPID FIRE</div>
+
+<h2>12. 15-Minute Interview — Rapid Fire Q&amp;A</h2>
+
+<div class="interview-timer">⏱ Estimated time: 15 minutes | ~30 questions | ~30 sec each</div>
+
+<table>
+<tr><th>#</th><th>Question</th><th>Key Answer (say this)</th></tr>
+<tr><td>1</td><td>What does ETL stand for?</td><td>Extract, Transform, Load</td></tr>
+<tr><td>2</td><td>What is IICS?</td><td>Informatica Intelligent Cloud Services — cloud-native data integration platform (part of IDMC)</td></tr>
+<tr><td>3</td><td>What is a Secure Agent?</td><td>On-premise runtime engine that executes IICS jobs locally; communicates outbound-only with IICS cloud</td></tr>
+<tr><td>4</td><td>How is a Mapping different from a Mapping Task?</td><td>Mapping = logic definition; Mapping Task = runnable instance bound to an environment/connection</td></tr>
+<tr><td>5</td><td>Name 5 IICS transformations.</td><td>Source, Target, Expression, Filter, Lookup, Joiner, Aggregator, Router, Sorter, Rank</td></tr>
+<tr><td>6</td><td>What is a Taskflow?</td><td>Orchestrates multiple mapping tasks with branching, parallel execution, email alerts</td></tr>
+<tr><td>7</td><td>What is a Star Schema?</td><td>One central FACT table surrounded by DIMENSION tables — optimized for analytical queries</td></tr>
+<tr><td>8</td><td>What is SCD Type 2?</td><td>Insert new row when dimension attribute changes; preserve history with EFFECTIVE_DATE, END_DATE, IS_CURRENT</td></tr>
+<tr><td>9</td><td>RANK vs DENSE_RANK?</td><td>RANK skips numbers on ties (1,1,3); DENSE_RANK does not skip (1,1,2)</td></tr>
+<tr><td>10</td><td>ROW_NUMBER vs RANK?</td><td>ROW_NUMBER always unique per row; RANK gives same number to ties</td></tr>
+<tr><td>11</td><td>What is a correlated subquery?</td><td>Subquery that references a column from the outer query — re-executes for each outer row</td></tr>
+<tr><td>12</td><td>INNER JOIN vs LEFT JOIN?</td><td>INNER: only matching rows; LEFT: all rows from left table, NULLs for non-matching right rows</td></tr>
+<tr><td>13</td><td>What does HAVING do?</td><td>Filters groups after GROUP BY; like WHERE but for aggregate conditions</td></tr>
+<tr><td>14</td><td>What is a ROLLUP?</td><td>Adds subtotal rows and a grand total row to GROUP BY results</td></tr>
+<tr><td>15</td><td>Difference: DELETE vs TRUNCATE?</td><td>DELETE is DML (rollback-able, fires triggers, can WHERE); TRUNCATE is DDL (auto-commit, no triggers, faster)</td></tr>
+<tr><td>16</td><td>What is a MERGE statement?</td><td>Combines INSERT and UPDATE — upsert; inserts new rows, updates existing rows in one atomic operation</td></tr>
+<tr><td>17</td><td>What is %ROWTYPE?</td><td>Declares a variable with the same structure as a table row — auto-updates if table changes</td></tr>
+<tr><td>18</td><td>Implicit vs Explicit cursor?</td><td>Implicit: auto-created for DML and SELECT INTO; Explicit: declared/opened/fetched/closed for multi-row queries</td></tr>
+<tr><td>19</td><td>What is BULK COLLECT?</td><td>Fetches multiple rows into a collection in one SQL call — reduces PL/SQL↔SQL context switches</td></tr>
+<tr><td>20</td><td>What is FORALL?</td><td>Sends all DML in a collection to SQL engine in one batch — partner to BULK COLLECT</td></tr>
+<tr><td>21</td><td>What is SAVEPOINT?</td><td>A named point in a transaction; ROLLBACK TO savepoint_name undoes only changes after it</td></tr>
+<tr><td>22</td><td>What is PRAGMA EXCEPTION_INIT?</td><td>Associates a named exception with an Oracle error number for clean exception handling</td></tr>
+<tr><td>23</td><td>What is RAISE_APPLICATION_ERROR?</td><td>Raises a custom user-defined error with a number (-20000 to -20999) and message</td></tr>
+<tr><td>24</td><td>BEFORE trigger vs AFTER trigger?</td><td>BEFORE: fires before DML, can modify :NEW values; AFTER: fires after DML, used for audit/cascades</td></tr>
+<tr><td>25</td><td>What is an INSTEAD OF trigger?</td><td>Fires instead of DML on a non-updatable view; re-routes DML to base tables</td></tr>
+<tr><td>26</td><td>What is a Package in PL/SQL?</td><td>A named container with a SPEC (public interface) and BODY (implementation) — groups related procedures/functions</td></tr>
+<tr><td>27</td><td>What is the difference between CDI and CAI?</td><td>CDI = batch ETL/ELT; CAI = real-time event-driven API integration</td></tr>
+<tr><td>28</td><td>What is Pushdown Optimization?</td><td>Translates IICS transformations into native SQL and runs them in the database engine — better performance</td></tr>
+<tr><td>29</td><td>How do you handle rejected records in IICS?</td><td>Router transformation routes invalid rows to a REJECTED_RECORDS target; error log at mapping task level</td></tr>
+<tr><td>30</td><td>What is NVL vs COALESCE?</td><td>NVL takes 2 args, Oracle-specific; COALESCE takes N args, returns first non-NULL, ANSI standard</td></tr>
+</table>
+
+
+<!-- ============================================================ -->
+<div class="part-header">SECTION 7 — 7-DAY PRACTICE PLAN</div>
+
+<h2>13. Daily Practice Schedule — March 16–22, 2026</h2>
+
+<table>
+<tr><th>Day</th><th>Date</th><th>Focus</th><th>Tasks</th></tr>
+<tr>
+  <td><strong>Day 1</strong></td><td>Mon Mar 16</td><td>Schema &amp; SQL Basics</td>
+  <td>
+    • Read schema (DIM_CUSTOMERS, DIM_PRODUCTS, DIM_ORDERS, FACT_SALES)<br>
+    • Run SELECT, WHERE, ORDER BY, GROUP BY queries (#1–#4)<br>
+    • Practice JOIN queries (#5–#7)
+  </td>
+</tr>
+<tr>
+  <td><strong>Day 2</strong></td><td>Tue Mar 17</td><td>Advanced SQL</td>
+  <td>
+    • Run HAVING, ROLLUP queries (#8–#10)<br>
+    • Practice subqueries and correlated subqueries (#11–#12)<br>
+    • Practice all Window Functions (#13–#17)<br>
+    • Practice MERGE upsert (#18)
+  </td>
+</tr>
+<tr>
+  <td><strong>Day 3</strong></td><td>Wed Mar 18</td><td>PL/SQL — Basics</td>
+  <td>
+    • Write and execute the procedure p_load_fact_sales<br>
+    • Write and test function f_net_revenue<br>
+    • Practice Explicit cursor (section 7.3)<br>
+    • Practice Cursor FOR loop (section 7.4)
+  </td>
+</tr>
+<tr>
+  <td><strong>Day 4</strong></td><td>Thu Mar 19</td><td>PL/SQL — Advanced</td>
+  <td>
+    • Exception handling — named + user-defined (section 7.5)<br>
+    • BULK COLLECT + FORALL performance pattern (section 7.6)<br>
+    • Create all 4 triggers (sections 8.1–8.4)<br>
+    • Create package pkg_retail_etl (section 9)
+  </td>
+</tr>
+<tr>
+  <td><strong>Day 5</strong></td><td>Fri Mar 20</td><td>IICS Deep Dive</td>
+  <td>
+    • Read all IICS concepts (sections 2–4)<br>
+    • Draw the pipeline diagram from memory<br>
+    • Practice Q&amp;A for IICS interview questions (#1–#10)<br>
+    • Design Taskflow on paper
+  </td>
+</tr>
+<tr>
+  <td><strong>Day 6</strong></td><td>Sat Mar 21</td><td>Mock Presentation</td>
+  <td>
+    • Present pipeline architecture aloud (5 min)<br>
+    • Answer all 6 presentation questions without notes<br>
+    • Answer all PL/SQL interview questions (#1–#10)<br>
+    • Run rapid-fire table questions 1–30
+  </td>
+</tr>
+<tr>
+  <td><strong>Day 7</strong></td><td>Sun Mar 22</td><td>Full Mock Interview</td>
+  <td>
+    • Set a 15-minute timer<br>
+    • Answer 30 rapid-fire questions out loud<br>
+    • Re-read any weak areas<br>
+    • Sleep early — Hackathon is tomorrow!
+  </td>
+</tr>
+</table>
+
+<div class="warn">
+<strong>Day of Hackathon (March 23) Checklist:</strong><br>
+✓ Know your pipeline architecture by heart and be ready to sketch it<br>
+✓ Have SQL queries ready for the 4 key tables<br>
+✓ Know IICS transformations list (Source, Target, Filter, Lookup, Router, Joiner, Aggregator, Expression)<br>
+✓ Know RANK vs DENSE_RANK vs ROW_NUMBER difference<br>
+✓ Know Procedure vs Function distinction<br>
+✓ Know BULK COLLECT + FORALL advantage<br>
+✓ Know SCD Type 1 vs Type 2<br>
+✓ Stay calm — the guide is in your hands!
+</div>
+
+<br><br>
+<p style="text-align:center; color:#888; font-size:11px;">Hackathon Practice Guide — IICS + PL/SQL + SQL — March 2026</p>
+</body>
+</html>
